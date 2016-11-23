@@ -35,11 +35,5 @@ application.nocache = parseInt((new Date()).getTime().toString(), 10);
 // Application startup
 application.run(function($rootScope)
 {
-    // Zurb foundation
-    console.log("Injecting Zurb Foundation.");
-    $rootScope.$apply($(document).foundation());
-    
-    // Bugfix for javascript errors with Sizzle and jquery.
-    // https://github.com/jquery/sizzle/issues/309
-    Object.getPrototypeOf(document.createComment('')).getAttribute = function() {};
+
 });
