@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html ng-app="wh40kbc" class="no-js" lang="en" ng-strict-di>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="robots" content="noindex">
+<title>Warhammer 40K Black Crusade Creation</title>
+<link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css' />
+<link href='css/reset.css' media='screen' rel='stylesheet' type='text/css' />
+<link href='css/screen.css' media='screen' rel='stylesheet' type='text/css' />
+<link href='css/reset.css' media='print' rel='stylesheet' type='text/css' />
+<link href='css/screen.css' media='print' rel='stylesheet' type='text/css' />
+<link href='css/custom.css' media='screen' rel='stylesheet' type='text/css' />
+<link href='css/custom.css' media='print' rel='stylesheet' type='text/css' />
+<script src="js/angular.js"></script>
+<script src="js/Application.js"></script>
+<script src="js/CreationController.js"></script>
+<script src="js/CreationService.js"></script>
+<script src="js/MasterDataService.js"></script>
+</head>
+<body class="swagger-section">
+	<div class="loading">
+		<p class="loader"></p>
+	</div>
+	<div id='header'>
+		<div class="swagger-ui-wrap">
+			<a id="logo" href="http://www.games-workshop.com/">Warhammer 40K Black Crusade Creation</a>
+		</div>
+	</div>
+	<div ng-controller="CreationController">
+		<div class="subHeader">RACES</div>
+		Please select a race:
+		<!-- <div ng-repeat="race in masterData().races">
+			<div ng-click="createNewCharacter(race)">
+				{{ race.name }} <span class="characeteristic">CharacteristicBonus:{{ race.characteristicBonus }} StartExp:{{ race.startExperience.exp }} </span>
+			</div>
+		</div>	 -->	  
+        <select ng-model="selectedRace" ng-change="createNewCharacter(selectedRace)" ng-options="race.name for race in masterData().races"></select>
+        <div ng-show="selectedRace">
+            {{ selectedRace.name }} <span class="characeteristic">CharacteristicBonus:{{ selectedRace.characteristicBonus }} StartExp:{{ selectedRace.startExperience.exp }} </span>
+        </div>
+		<hr>
+		<div class="subHeader">CHARACTERISTICS</div>
+		Please roll your characteristics:
+		<input type="button" value="Roll" ng-click="creation().getCharacteristics(selectedRace)"/>
+		<div ng-show="creation().characteristics">
+		  <div ng-repeat="attr in creation().characteristics">
+		      {{attr }}
+		  </div>
+		</div>
+		<hr>
+		<div class="subHeader">CLASSES</div>
+        Please select a class:
+<!-- 		<div ng-repeat="class in masterData().classes">
+			<div>
+				{{ class.name }} <span class="characeteristic">Class:{{ class.restriction.name }} PsyRating:{{ class.psyRating.value }} HP:{{ class.wound.roll.numberOfDice}}{{ class.wound.roll.dice}} + {{ class.wound.roll.bonus}} </span>
+			</div>
+		</div> -->
+		<select ng-model="selectedClass" ng-change="setClass(selectedClass)" ng-options="class.name for class in creation().availableClasses"></select>
+		<div ng-show="selectedClass">
+                {{ selectedClass.name }} <span class="characeteristic">Class:{{ selectedClass.restriction.name }} PsyRating:{{ selectedClass.psyRating.value }} HP:{{ selectedClass.wound.roll.numberOfDice}}{{ selectedClass.wound.roll.dice}} + {{ selectedClass.wound.roll.bonus}} </span>
+        </div>
+		<hr>
+		<div class="subHeader">SKILLS</div>
+		<div ng-repeat="skill in masterData().skills">
+			<div>
+				{{ skill.name }}  <span ng-show="skill.subskills">*</span><span ng-show="!skill.subskills" ng-repeat="value in skill.characteristics" class="characeteristic"> {{ value }} </span>
+				<div ng-if="skill.subskills" ng-repeat="subskill in skill.subskills" class="subSkill">
+					{{ subskill.name }} <span ng-repeat="value in subskill.characteristics" class="characeteristic"> {{ value }} </span>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<div class="subHeader">TALENTS</div>
+		<div ng-repeat="talent in masterData().talents">
+			<div>
+				{{ talent.name }} <span ng-show="talent.modifiers" ng-repeat="value in talent.modifiers" class="characeteristic"><span ng-show="!value.type.name">{{ value.type }}</span><span ng-show="value.type.name">{{ value.type.name }}</span> + {{value.value}} </span>
+			</div>
+		</div>
+		<hr>
+		<div class="subHeader">PRIDES</div>
+		<div ng-repeat="pride in masterData().prides">
+			<div>
+				{{ pride.name }} <span ng-show="pride.modifiers" ng-repeat="value in pride.modifiers" class="characeteristic"><span ng-show="!value.type.name">{{ value.type }}</span><span ng-show="value.type.name">{{ value.type.name }}</span> + {{value.value}} </span>
+			</div>
+		</div>
+		<hr>
+		<div class="subHeader">MOTIVATIONS</div>
+		<div ng-repeat="motivation in masterData().motivations">
+			<div>
+				{{ motivation.name }} <span ng-show="motivation.modifiers" ng-repeat="value in motivation.modifiers" class="characeteristic"><span ng-show="!value.type.name">{{ value.type }}</span><span ng-show="value.type.name">{{ value.type.name }}</span> + {{value.value}} </span>
+			</div>
+		</div>
+		<hr>
+		<div class="subHeader">DISGRACES</div>
+		<div ng-repeat="disgrace in masterData().disgraces">
+            <div>
+                {{ disgrace.name }} <span ng-show="disgrace.modifiers" ng-repeat="value in disgrace.modifiers" class="characeteristic"><span ng-show="!value.type.name">{{ value.type }}</span><span ng-show="value.type.name">{{ value.type.name }}</span> + {{value.value}} </span>
+            </div>
+		</div>
+	</div>
+</body>
+</html>

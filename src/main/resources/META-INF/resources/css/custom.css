@@ -1,0 +1,42 @@
+
+div
+{
+	font-size: 10px;
+	padding: 1px;	
+}
+
+.subHeader {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.characeteristic {
+    font-size: 6px;
+    font-weight: bold;
+}
+
+.subSkill {
+    padding: 1px;   
+    padding-left: 40px;    
+}
+
+.swagger-section #header {
+    background-color: #000000;
+    padding: 14px;
+}
+
+.swagger-section #header a#logo {
+    color: grey;
+}
+
+.table-list .columns {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+.table-list .columns .close {
+    line-height: inherit;
+}
+.table-list .columns .button {
+    margin: 0;
+    padding: 0.3rem 1rem 0.3rem;
+}
