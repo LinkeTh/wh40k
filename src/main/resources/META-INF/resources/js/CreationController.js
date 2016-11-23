@@ -55,7 +55,9 @@ function($scope, $window, $rootScope, $location, CreationService, MasterDataServ
         	console.log(CreationService.character);
         	CreationService.talents = [];
         	CreationService.skills = [];
-        	
+            CreationService.wounds = {};
+            $scope.acceptedWounds = false;
+
             CreationService.getSkillsForRace(CreationService.character.race);
             CreationService.getTalentsForRace(CreationService.character.race);
             CreationService.getSkillsForClass($class);

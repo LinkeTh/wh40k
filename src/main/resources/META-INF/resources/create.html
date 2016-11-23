@@ -73,54 +73,57 @@
 				
 				<hr>
 	
-				<div ng-show="acceptedCharacteristics">
+				<div ng-show="acceptedCharacteristics" >
 				    
-	                <div>
-						<div class="subHeader">CLASSES</div>
-						<div>
-						Please select a class: <select ng-model="selectedClass" ng-change="setClass(selectedClass)" ng-options="class.name for class in creation().availableClasses"></select>
+	                <div class="medium-12 columns table-list">
+	             	   <div class="medium-6 columns">
+							<div class="subHeader">CLASSES</div>							
+							<div >
+							Please select a class: <select ng-model="selectedClass" ng-change="setClass(selectedClass)" ng-options="class.name for class in creation().availableClasses"></select>
+							</div>
 						</div>
+						<div ng-show="selectedClass" class="medium-6 columns">
+
+							<div class="subHeader">WOUNDS</div>
+							<div ng-show="!acceptedWounds">
+								Please roll your wounds: <input type="button" value="Roll" ng-click="creation().getWounds(selectedClass)" />
+							</div>
+							<div ng-show="creation().wounds">
+								<div class="medium-12 columns table-list">
+									<div class="medium-8 columns">
+									{{ creation().wounds.value}}
+									</div>
+								</div>
+							</div>
+							<div ng-show="creation().wounds.value && !acceptedWounds">
+								Please accept or reroll: <input type="button" ng-click="acceptWoundsRolls()" value="Accept" />
+							</div>
+							
+							<div ng-show="creation().character.psyRating.value > 0">
+								<div class="subHeader">PSY RATING</div>
+								<div class="medium-12 columns table-list">
+									<div class="medium-8 columns">
+									{{creation().character.psyRating.value }}
+									</div>
+								</div>
+							</div>
+							
+						</div>
+
 					</div>
 					
 	                <hr>
 	                
 					<div ng-show="selectedClass">
-				
-						<div ng-show="creation().character.psyRating.value > 0">
-							<div class="subHeader">PSY RATING</div>
-							<div class="medium-12 columns table-list">
-				                <div class="medium-8 columns">{{ creation().character.psyRating.value }}</div>	        
-				            </div>				   
-						</div>
-						
-						<hr>
-														
-						<div>
-							<div class="subHeader">WOUNDS</div>
-							<div ng-show="!acceptedWounds">			
-							     Please roll your wounds: <input type="button" value="Roll" ng-click="creation().getWounds(selectedClass)" />
-							</div>
-							<div ng-show="creation().wounds" >
-									<div class="medium-12 columns table-list">
-						                <div class="medium-8 columns">{{ creation().wounds.value }}</div>	        
-						            </div>				   
-			            	</div>
-				            <div ng-show="creation().wounds.value && !acceptedWounds">
-						          Please accept or reroll: <input type="button" ng-click="acceptWoundsRolls()" value="Accept" />
-							</div>
-						</div>
-						
-						<hr>
-					
                         <div>
 							<div class="subHeader">SKILLS</div>
 							<div ng-repeat="container in creation().skills">								
 			                    <div ng-repeat="skill in container.selectionContainer">
-			                        <div>
+			                        <div class="medium-12 columns table-list">
 				                        <div ng-if="skill.type == 'SINGLE'">
 				                          	<div ng-if="skill.values[0].specialisable">
 				                        		<div ng-repeat="subskill in masterData().findSubSkills(skill.values[0].name)">
-				                        			<label><input type="radio" ng-model="$parent.selectedItem" value="{{ subskill.name }}"> {{ subskill.name }} </label>
+				                        			<label><input type="radio" ng-model="subskill.checked" value="{{ subskill.name }}"> {{ subskill.name }} </label>
 				                        		</div>
 				                        	</div>
 				                        	<div ng-if="!skill.values[0].specialisable">
@@ -150,7 +153,7 @@
 		                    <div class="subHeader">TALENTS</div>
 		                    <div ng-repeat="container in creation().talents">			                    
 			    		        <div ng-repeat="talent in container.selectionContainer">
-			                        <div>
+			                        <div class="medium-12 columns table-list">
 				                        <div ng-if="talent.type == 'SINGLE' || skill.type == 'MULTI'">
 				                        	  <label><input ng-disabled="true" type="checkbox" checked="checked" value=" {{ talent.values[0].name }} "> {{ talent.values[0].name }}  {{ talent.values[0].modifiers }} </label>
 				                    	</div>

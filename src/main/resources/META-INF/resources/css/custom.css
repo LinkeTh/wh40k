@@ -30,8 +30,8 @@ div
 }
 
 .table-list .columns {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    /* padding-top: 0.5rem;
+    padding-bottom: 0.5rem; */
 }
 .table-list .columns .close {
     line-height: inherit;
