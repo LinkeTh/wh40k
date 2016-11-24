@@ -1,9 +1,6 @@
 application.service("MasterDataService", MasterDataService);
-
 MasterDataService.$inject = [ "$rootScope", "$http" ];
-
 function MasterDataService($rootScope, $http) {
-	
 	console.log("MasterDataService::MasterDataService()");
 
 	var that = this;
@@ -186,5 +183,4 @@ function MasterDataService($rootScope, $http) {
 			console.log("Server Error (" + data.status + ")\n" + JSON.stringify(data.data, null, "    "));
 		});
 	};
-
-}
+};

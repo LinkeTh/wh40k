@@ -209,4 +209,4 @@ function CreationService($rootScope, $http) {
 			console.log("Server Error (" + data.status + ")\n" + JSON.stringify(data.data, null, "    "));
 		});
 	};
-}
+};
