@@ -1,25 +1,25 @@
-package de.linket.rpg.wh40k.bc.traits;
+package de.linket.rpg.wh40k.bc.player.talents;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import de.linket.rpg.wh40k.bc.advances.Advanceable;
 import de.linket.rpg.wh40k.bc.common.GameObject;
 import de.linket.rpg.wh40k.bc.exp.Experience;
 import de.linket.rpg.wh40k.bc.modifier.Modifier;
-import de.linket.rpg.wh40k.bc.types.TraitType;
+import de.linket.rpg.wh40k.bc.player.advances.Advanceable;
+import de.linket.rpg.wh40k.bc.types.TalentType;
 import de.linket.rpg.wh40k.bc.util.StringUtil;
 
-public class Trait implements GameObject, Advanceable
+public class Talent implements GameObject, Advanceable
 {
     private int advances;
     private List<Modifier<?>> modifiers = new ArrayList<>();
 
-    private TraitType type;
+    private TalentType type;
 
-    public Trait(TraitType type)
+    public Talent(TalentType type)
     {
         super();
         this.type = type;
@@ -44,7 +44,7 @@ public class Trait implements GameObject, Advanceable
         return this.advances;
     }
 
-    public TraitType getType()
+    public TalentType getType()
     {
         return this.type;
     }

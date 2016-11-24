@@ -27,8 +27,8 @@ import de.linket.rpg.wh40k.bc.definition.classes.talents.HeretekTalentWrapper;
 import de.linket.rpg.wh40k.bc.definition.classes.talents.PsykerTalentWrapper;
 import de.linket.rpg.wh40k.bc.definition.classes.talents.RenegadeTalentWrapper;
 import de.linket.rpg.wh40k.bc.definition.classes.talents.SorcererTalentWrapper;
-import de.linket.rpg.wh40k.bc.special.PsyRating;
-import de.linket.rpg.wh40k.bc.special.Wounds;
+import de.linket.rpg.wh40k.bc.player.special.PsyRating;
+import de.linket.rpg.wh40k.bc.player.special.Wounds;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum ClassType implements GameObject

@@ -7,13 +7,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import de.linket.rpg.wh40k.bc.characteristics.CharacteristicModifier;
 import de.linket.rpg.wh40k.bc.common.GameObject;
 import de.linket.rpg.wh40k.bc.common.TextObject;
 import de.linket.rpg.wh40k.bc.modifier.Modifier;
 import de.linket.rpg.wh40k.bc.modifier.TextModifier;
-import de.linket.rpg.wh40k.bc.skills.SkillModifier;
-import de.linket.rpg.wh40k.bc.special.SpecialModifier;
+import de.linket.rpg.wh40k.bc.player.characteristics.CharacteristicModifier;
+import de.linket.rpg.wh40k.bc.player.skills.SkillModifier;
+import de.linket.rpg.wh40k.bc.player.special.SpecialModifier;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum TraitType implements GameObject

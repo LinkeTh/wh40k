@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wordnik.swagger.annotations.Api;
 
-import de.linket.rpg.wh40k.bc.characteristics.Characteristic;
 import de.linket.rpg.wh40k.bc.common.selection.SelectionWrapper;
 import de.linket.rpg.wh40k.bc.player.Character;
-import de.linket.rpg.wh40k.bc.special.PsyRating;
-import de.linket.rpg.wh40k.bc.special.Wounds;
+import de.linket.rpg.wh40k.bc.player.characteristics.Characteristic;
+import de.linket.rpg.wh40k.bc.player.special.PsyRating;
+import de.linket.rpg.wh40k.bc.player.special.Wounds;
 import de.linket.rpg.wh40k.bc.types.CharacterStateType;
 import de.linket.rpg.wh40k.bc.types.CharacteristicType;
 import de.linket.rpg.wh40k.bc.types.ClassType;

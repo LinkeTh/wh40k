@@ -1,4 +1,4 @@
-package de.linket.rpg.wh40k.bc.special;
+package de.linket.rpg.wh40k.bc.player.special;
 
 import de.linket.rpg.wh40k.bc.common.RollableGameValue;
 import de.linket.rpg.wh40k.bc.dice.DefaultBonusRollImpl;

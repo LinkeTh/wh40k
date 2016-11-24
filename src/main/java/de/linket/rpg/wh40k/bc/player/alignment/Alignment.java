@@ -1,8 +1,8 @@
-package de.linket.rpg.wh40k.bc.alignment;
+package de.linket.rpg.wh40k.bc.player.alignment;
 
-import de.linket.rpg.wh40k.bc.advances.Advanceable;
 import de.linket.rpg.wh40k.bc.common.ModifiableGameValue;
 import de.linket.rpg.wh40k.bc.exp.Experience;
+import de.linket.rpg.wh40k.bc.player.advances.Advanceable;
 import de.linket.rpg.wh40k.bc.types.AlignmentType;
 import de.linket.rpg.wh40k.bc.util.StringUtil;
 

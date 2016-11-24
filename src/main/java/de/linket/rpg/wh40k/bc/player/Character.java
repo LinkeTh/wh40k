@@ -8,19 +8,19 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-import de.linket.rpg.wh40k.bc.alignment.Alignment;
-import de.linket.rpg.wh40k.bc.alignment.AlignmentTracker;
-import de.linket.rpg.wh40k.bc.characteristics.Characteristic;
 import de.linket.rpg.wh40k.bc.common.GameObject;
 import de.linket.rpg.wh40k.bc.exp.Experience;
 import de.linket.rpg.wh40k.bc.modifier.Modifier;
+import de.linket.rpg.wh40k.bc.player.alignment.Alignment;
+import de.linket.rpg.wh40k.bc.player.alignment.AlignmentTracker;
+import de.linket.rpg.wh40k.bc.player.characteristics.Characteristic;
 import de.linket.rpg.wh40k.bc.player.inventory.Inventory;
-import de.linket.rpg.wh40k.bc.skills.Skill;
-import de.linket.rpg.wh40k.bc.skills.SkillModifier;
-import de.linket.rpg.wh40k.bc.special.Initiative;
-import de.linket.rpg.wh40k.bc.special.PsyRating;
-import de.linket.rpg.wh40k.bc.special.Wounds;
-import de.linket.rpg.wh40k.bc.talents.Talent;
+import de.linket.rpg.wh40k.bc.player.skills.Skill;
+import de.linket.rpg.wh40k.bc.player.skills.SkillModifier;
+import de.linket.rpg.wh40k.bc.player.special.Initiative;
+import de.linket.rpg.wh40k.bc.player.special.PsyRating;
+import de.linket.rpg.wh40k.bc.player.special.Wounds;
+import de.linket.rpg.wh40k.bc.player.talents.Talent;
 import de.linket.rpg.wh40k.bc.types.AlignmentType;
 import de.linket.rpg.wh40k.bc.types.CharacterStateType;
 import de.linket.rpg.wh40k.bc.types.CharacteristicType;

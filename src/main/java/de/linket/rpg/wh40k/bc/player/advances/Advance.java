@@ -1,4 +1,4 @@
-package de.linket.rpg.wh40k.bc.advances;
+package de.linket.rpg.wh40k.bc.player.advances;
 
 import de.linket.rpg.wh40k.bc.exp.Experience;
 import de.linket.rpg.wh40k.bc.modifier.Modifier;

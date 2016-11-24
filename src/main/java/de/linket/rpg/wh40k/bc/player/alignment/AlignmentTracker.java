@@ -1,4 +1,4 @@
-package de.linket.rpg.wh40k.bc.alignment;
+package de.linket.rpg.wh40k.bc.player.alignment;
 
 import java.util.ArrayList;
 import java.util.List;
