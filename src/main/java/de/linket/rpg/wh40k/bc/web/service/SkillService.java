@@ -27,8 +27,6 @@ public class SkillService
     public List<SkillType> findAll()
     {
         return Arrays.asList(SkillType.values()).stream().filter(i -> i.getParent() == null).collect(Collectors.toList());
-
-        // return Arrays.asList(SkillType.values());
     }
 
 }

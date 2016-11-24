@@ -2,9 +2,11 @@ package de.linket.rpg.wh40k.bc.types;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import de.linket.rpg.wh40k.bc.common.GameObject;
@@ -24,16 +26,30 @@ public enum TalentType implements GameObject
 
     private List<Modifier<?>> modifiers;
     private boolean advancable;
+    private SkillType parent;
+    private boolean specialisable;
 
-    private TalentType(Modifier<?>... modifiers)
+    private TalentType(boolean specialisable, SkillType parent, boolean advancable, Modifier<?>... modifiers)
     {
-        this(false, modifiers);
+        this.specialisable = specialisable;
+        this.advancable = advancable;
+        this.parent = parent;
+        this.modifiers = Arrays.asList(modifiers);
+    }
+
+    private TalentType(boolean specialisable, SkillType parent, Modifier<?>... modifiers)
+    {
+        this(specialisable, parent, false, modifiers);
     }
 
     private TalentType(boolean advancable, Modifier<?>... modifiers)
     {
-        this.advancable = advancable;
-        this.modifiers = Arrays.asList(modifiers);
+        this(false, null, advancable, modifiers);
+    }
+
+    private TalentType(Modifier<?>... modifiers)
+    {
+        this(false, null, false, modifiers);
     }
 
     public String getName()
@@ -49,6 +65,23 @@ public enum TalentType implements GameObject
     public List<Modifier<?>> getModifiers()
     {
         return this.modifiers;
+    }
+
+    @JsonIgnore
+    public SkillType getParent()
+    {
+        return this.parent;
+    }
+
+    public boolean isSpecialisable()
+    {
+        return this.specialisable;
+    }
+
+    @JsonIgnore
+    public List<TalentType> getAvailableSubTypes()
+    {
+        return Arrays.asList(TalentType.values()).stream().filter(st -> this.equals(st.parent)).collect(Collectors.toList());
     }
 
     @JsonCreator

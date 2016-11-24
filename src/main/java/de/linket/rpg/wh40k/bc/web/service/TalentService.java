@@ -2,6 +2,7 @@ package de.linket.rpg.wh40k.bc.web.service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -25,7 +26,6 @@ public class TalentService
 
     public List<TalentType> findAll()
     {
-        return Arrays.asList(TalentType.values());
+        return Arrays.asList(TalentType.values()).stream().filter(i -> i.getParent() == null).collect(Collectors.toList());
     }
-
 }
