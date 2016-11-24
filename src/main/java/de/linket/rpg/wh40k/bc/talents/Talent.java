@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import de.linket.rpg.wh40k.bc.common.Advanceable;
+import de.linket.rpg.wh40k.bc.advances.Advanceable;
 import de.linket.rpg.wh40k.bc.common.GameObject;
-import de.linket.rpg.wh40k.bc.common.Modifier;
 import de.linket.rpg.wh40k.bc.exp.Experience;
+import de.linket.rpg.wh40k.bc.modifier.Modifier;
 import de.linket.rpg.wh40k.bc.types.TalentType;
 import de.linket.rpg.wh40k.bc.util.StringUtil;
 

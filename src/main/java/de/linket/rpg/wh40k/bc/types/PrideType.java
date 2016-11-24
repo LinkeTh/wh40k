@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import de.linket.rpg.wh40k.bc.characteristics.CharacteristicModifier;
 import de.linket.rpg.wh40k.bc.common.GameObject;
-import de.linket.rpg.wh40k.bc.common.Modifier;
+import de.linket.rpg.wh40k.bc.modifier.Modifier;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum PrideType implements GameObject

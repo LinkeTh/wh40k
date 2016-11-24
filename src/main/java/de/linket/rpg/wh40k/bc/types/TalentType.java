@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import de.linket.rpg.wh40k.bc.characteristics.CharacteristicModifier;
 import de.linket.rpg.wh40k.bc.common.GameObject;
-import de.linket.rpg.wh40k.bc.common.Modifier;
+import de.linket.rpg.wh40k.bc.modifier.Modifier;
 import de.linket.rpg.wh40k.bc.skills.SkillModifier;
 import de.linket.rpg.wh40k.bc.special.SpecialModifier;
 

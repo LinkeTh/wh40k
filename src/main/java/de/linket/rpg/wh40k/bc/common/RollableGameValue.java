@@ -1,6 +1,8 @@
 package de.linket.rpg.wh40k.bc.common;
 
 import de.linket.rpg.wh40k.bc.dice.BonusMultiDiceRoll;
+import de.linket.rpg.wh40k.bc.modifier.Modifier;
+
 import com.fasterxml.jackson.annotation.*;
 
 public abstract class RollableGameValue<T extends GameObject, R extends BonusMultiDiceRoll> extends ModifiableGameValue<T> implements GameValue<T>

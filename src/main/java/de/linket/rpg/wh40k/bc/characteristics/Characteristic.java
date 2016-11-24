@@ -5,11 +5,11 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.*;
 
 import de.linket.rpg.wh40k.bc.advances.AdvanceList;
-import de.linket.rpg.wh40k.bc.common.Advanceable;
-import de.linket.rpg.wh40k.bc.common.Modifier;
+import de.linket.rpg.wh40k.bc.advances.Advanceable;
 import de.linket.rpg.wh40k.bc.common.RollableGameValue;
 import de.linket.rpg.wh40k.bc.dice.DefaultBonusRollImpl;
 import de.linket.rpg.wh40k.bc.exp.Experience;
+import de.linket.rpg.wh40k.bc.modifier.Modifier;
 import de.linket.rpg.wh40k.bc.types.CharacteristicType;
 import de.linket.rpg.wh40k.bc.types.RaceType;
 import de.linket.rpg.wh40k.bc.util.StringUtil;

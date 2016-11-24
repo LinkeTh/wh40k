@@ -9,123 +9,124 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import de.linket.rpg.wh40k.bc.classes.skills.ApostateSkillWrapper;
-import de.linket.rpg.wh40k.bc.classes.skills.ChampionSkillWrapper;
-import de.linket.rpg.wh40k.bc.classes.skills.ChosenSkillWrapper;
-import de.linket.rpg.wh40k.bc.classes.skills.ForsakenSkillWrapper;
-import de.linket.rpg.wh40k.bc.classes.skills.HeretekSkillWrapper;
-import de.linket.rpg.wh40k.bc.classes.skills.PsykerSkillWrapper;
-import de.linket.rpg.wh40k.bc.classes.skills.RenegadeSkillWrapper;
-import de.linket.rpg.wh40k.bc.classes.skills.SorcererSkillWrapper;
-import de.linket.rpg.wh40k.bc.classes.talents.ApostateTalentWrapper;
-import de.linket.rpg.wh40k.bc.classes.talents.ChampionTalentWrapper;
-import de.linket.rpg.wh40k.bc.classes.talents.ChosenTalentWrapper;
-import de.linket.rpg.wh40k.bc.classes.talents.ForsakenTalentWrapper;
-import de.linket.rpg.wh40k.bc.classes.talents.HeretekTalentWrapper;
-import de.linket.rpg.wh40k.bc.classes.talents.PsykerTalentWrapper;
-import de.linket.rpg.wh40k.bc.classes.talents.RenegadeTalentWrapper;
-import de.linket.rpg.wh40k.bc.classes.talents.SorcererTalentWrapper;
 import de.linket.rpg.wh40k.bc.common.GameObject;
 import de.linket.rpg.wh40k.bc.common.selection.SelectionWrapper;
-import de.linket.rpg.wh40k.bc.dice.DefaultBonusRollImpl;
+import de.linket.rpg.wh40k.bc.definition.classes.skills.ApostateSkillWrapper;
+import de.linket.rpg.wh40k.bc.definition.classes.skills.ChampionSkillWrapper;
+import de.linket.rpg.wh40k.bc.definition.classes.skills.ChosenSkillWrapper;
+import de.linket.rpg.wh40k.bc.definition.classes.skills.ForsakenSkillWrapper;
+import de.linket.rpg.wh40k.bc.definition.classes.skills.HeretekSkillWrapper;
+import de.linket.rpg.wh40k.bc.definition.classes.skills.PsykerSkillWrapper;
+import de.linket.rpg.wh40k.bc.definition.classes.skills.RenegadeSkillWrapper;
+import de.linket.rpg.wh40k.bc.definition.classes.skills.SorcererSkillWrapper;
+import de.linket.rpg.wh40k.bc.definition.classes.talents.ApostateTalentWrapper;
+import de.linket.rpg.wh40k.bc.definition.classes.talents.ChampionTalentWrapper;
+import de.linket.rpg.wh40k.bc.definition.classes.talents.ChosenTalentWrapper;
+import de.linket.rpg.wh40k.bc.definition.classes.talents.ForsakenTalentWrapper;
+import de.linket.rpg.wh40k.bc.definition.classes.talents.HeretekTalentWrapper;
+import de.linket.rpg.wh40k.bc.definition.classes.talents.PsykerTalentWrapper;
+import de.linket.rpg.wh40k.bc.definition.classes.talents.RenegadeTalentWrapper;
+import de.linket.rpg.wh40k.bc.definition.classes.talents.SorcererTalentWrapper;
 import de.linket.rpg.wh40k.bc.special.PsyRating;
 import de.linket.rpg.wh40k.bc.special.Wounds;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum ClassType implements GameObject
 {
-	APOSTATE(RaceType.HUMAN, new PsyRating(0), new ApostateSkillWrapper(), new ApostateTalentWrapper(), new Wounds(
-			new DefaultBonusRollImpl(DiceType.W5, 1, 9))),
-	CHAMPION(RaceType.CHAOS_SPACE_MARINE, new PsyRating(0), new ChampionSkillWrapper(), new ChampionTalentWrapper(), new Wounds(
-			new DefaultBonusRollImpl(DiceType.W5, 1, 15))),
-	CHOSEN(RaceType.CHAOS_SPACE_MARINE, new PsyRating(0), new ChosenSkillWrapper(), new ChosenTalentWrapper(), new Wounds(
-			new DefaultBonusRollImpl(DiceType.W5, 1, 16))),
-	FORSAKEN(RaceType.CHAOS_SPACE_MARINE, new PsyRating(0), new ForsakenSkillWrapper(), new ForsakenTalentWrapper(), new Wounds(
-			new DefaultBonusRollImpl(DiceType.W5, 1, 15))),
-	HERETEK(RaceType.HUMAN, new PsyRating(0), new HeretekSkillWrapper(), new HeretekTalentWrapper(), new Wounds(
-			new DefaultBonusRollImpl(DiceType.W5, 1, 12))),
-	PSYKER(RaceType.HUMAN, new PsyRating(3), new PsykerSkillWrapper(), new PsykerTalentWrapper(), new Wounds(
-			new DefaultBonusRollImpl(DiceType.W5, 1, 8))),
-	RENEGADE(RaceType.HUMAN, new PsyRating(0), new RenegadeSkillWrapper(), new RenegadeTalentWrapper(), new Wounds(
-			new DefaultBonusRollImpl(DiceType.W5, 1, 10))),
-	SORCERER(RaceType.CHAOS_SPACE_MARINE, new PsyRating(2), new SorcererSkillWrapper(), new SorcererTalentWrapper(), new Wounds(
-			new DefaultBonusRollImpl(DiceType.W5, 1, 15)));
+    APOSTATE(RaceType.HUMAN, new PsyRating(0), new ApostateSkillWrapper(), new ApostateTalentWrapper(), null, new Wounds(DiceType.W5, 1, 9)),
+    CHAMPION(RaceType.CHAOS_SPACE_MARINE, new PsyRating(0), new ChampionSkillWrapper(), new ChampionTalentWrapper(), null, new Wounds(DiceType.W5, 1,
+                    15)),
+    CHOSEN(RaceType.CHAOS_SPACE_MARINE, new PsyRating(0), new ChosenSkillWrapper(), new ChosenTalentWrapper(), null, new Wounds(DiceType.W5, 1, 16)),
+    FORSAKEN(RaceType.CHAOS_SPACE_MARINE, new PsyRating(0), new ForsakenSkillWrapper(), new ForsakenTalentWrapper(), null, new Wounds(DiceType.W5, 1,
+                    15)),
+    HERETEK(RaceType.HUMAN, new PsyRating(0), new HeretekSkillWrapper(), new HeretekTalentWrapper(), null, new Wounds(DiceType.W5, 1, 12)),
+    PSYKER(RaceType.HUMAN, new PsyRating(3), new PsykerSkillWrapper(), new PsykerTalentWrapper(), null, new Wounds(DiceType.W5, 1, 8)),
+    RENEGADE(RaceType.HUMAN, new PsyRating(0), new RenegadeSkillWrapper(), new RenegadeTalentWrapper(), null, new Wounds(DiceType.W5, 1, 10)),
+    SORCERER(RaceType.CHAOS_SPACE_MARINE, new PsyRating(2), new SorcererSkillWrapper(), new SorcererTalentWrapper(), null, new Wounds(DiceType.W5, 1,
+                    15));
 
-	public static List<ClassType> getAvailableClasses(RaceType restriction)
-	{
-		if (restriction == null)
-		{
-			return null;
-		}
+    private PsyRating psyRating;
+    private RaceType restriction;
+    private SelectionWrapper<SkillType> skillWrapper;
+    private SelectionWrapper<TalentType> talentWrapper;
+    private SelectionWrapper<TraitType> traitWrapper;
 
-		return Arrays.asList(ClassType.values()).stream().filter(ct -> ct.restriction.equals(restriction)).collect(Collectors.toList());
-	}
+    private Wounds wound;
 
-	private PsyRating psyRating;
-	private RaceType restriction;
-	private SelectionWrapper<SkillType> skillWrapper;
-	private SelectionWrapper<TalentType> talentWrapper;
+    private ClassType(RaceType restriction, PsyRating psyRating, SelectionWrapper<SkillType> skillWrapper, SelectionWrapper<TalentType> talentWrapper,
+                    SelectionWrapper<TraitType> traitWrapper, Wounds wound)
+    {
+        this.restriction = restriction;
+        this.skillWrapper = skillWrapper;
+        this.talentWrapper = talentWrapper;
+        this.traitWrapper = traitWrapper;
+        this.wound = wound;
+        this.psyRating = psyRating;
+    }
 
-	private Wounds wound;
+    public String getName()
+    {
+        return this.name();
+    }
 
-	private ClassType(RaceType restriction, PsyRating psyRating, SelectionWrapper<SkillType> skillWrapper, SelectionWrapper<TalentType> talentWrapper,
-			Wounds wound)
-	{
-		this.restriction = restriction;
-		this.skillWrapper = skillWrapper;
-		this.talentWrapper = talentWrapper;
-		this.wound = wound;
-		this.psyRating = psyRating;
-	}
+    public PsyRating getPsyRating()
+    {
+        return this.psyRating;
+    }
 
-	public String getName()
-	{
-		return this.name();
-	}
+    public RaceType getRestriction()
+    {
+        return this.restriction;
+    };
 
-	public PsyRating getPsyRating()
-	{
-		return this.psyRating;
-	}
+    @JsonIgnore
+    public SelectionWrapper<TraitType> getTraitWrapper()
+    {
+        return this.traitWrapper;
+    }
 
-	public RaceType getRestriction()
-	{
-		return this.restriction;
-	};
+    @JsonIgnore
+    public SelectionWrapper<SkillType> getSkillWrapper()
+    {
+        return this.skillWrapper;
+    }
 
-	@JsonIgnore
-	public SelectionWrapper<SkillType> getSkillWrapper()
-	{
-		return this.skillWrapper;
-	}
+    @JsonIgnore
+    public SelectionWrapper<TalentType> getTalentWrapper()
+    {
+        return this.talentWrapper;
+    }
 
-	@JsonIgnore
-	public SelectionWrapper<TalentType> getTalentWrapper()
-	{
-		return this.talentWrapper;
-	}
+    public Wounds getWound()
+    {
+        return this.wound;
+    }
 
-	public Wounds getWound()
-	{
-		return this.wound;
-	}
+    public static List<ClassType> getAvailableClasses(RaceType restriction)
+    {
+        if (restriction == null)
+        {
+            return null;
+        }
 
+        return Arrays.asList(ClassType.values()).stream().filter(ct -> ct.restriction.equals(restriction)).collect(Collectors.toList());
+    }
 
-	@JsonCreator
-	public static ClassType fromName(@JsonProperty("name") String name)
-	{
-		if(name == null)
-		{
-			return null;
-		}
+    @JsonCreator
+    public static ClassType fromName(@JsonProperty("name") String name)
+    {
+        if (name == null)
+        {
+            return null;
+        }
 
-		for(ClassType type : ClassType.values())
-		{
-			if(type.getName().equalsIgnoreCase(name))
-			{
-				return type;
-			}
-		}
-		return null;
-	}
+        for (ClassType type : ClassType.values())
+        {
+            if (type.getName().equalsIgnoreCase(name))
+            {
+                return type;
+            }
+        }
+        return null;
+    }
 }

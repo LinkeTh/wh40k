@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import de.linket.rpg.wh40k.bc.common.GameObject;
-import de.linket.rpg.wh40k.bc.common.Modifier;
+import de.linket.rpg.wh40k.bc.modifier.Modifier;
 
 public enum ItemCategoryType implements GameObject
 {

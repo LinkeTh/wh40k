@@ -2,6 +2,8 @@ package de.linket.rpg.wh40k.bc.common;
 
 import com.fasterxml.jackson.annotation.*;
 
+import de.linket.rpg.wh40k.bc.modifier.Modifier;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package de.linket.rpg.wh40k.bc.skills;
 
 import de.linket.rpg.wh40k.bc.advances.AdvanceList;
-import de.linket.rpg.wh40k.bc.common.Advanceable;
+import de.linket.rpg.wh40k.bc.advances.Advanceable;
 import de.linket.rpg.wh40k.bc.common.ModifiableGameValue;
 import de.linket.rpg.wh40k.bc.exp.Experience;
 import de.linket.rpg.wh40k.bc.types.SkillStateType;
