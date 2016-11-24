@@ -10,7 +10,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import de.linket.rpg.wh40k.bc.common.GameObject;
+import de.linket.rpg.wh40k.bc.common.TextObject;
 import de.linket.rpg.wh40k.bc.modifier.Modifier;
+import de.linket.rpg.wh40k.bc.modifier.TextModifier;
+import de.linket.rpg.wh40k.bc.player.characteristics.CharacteristicBonusModifier;
 import de.linket.rpg.wh40k.bc.player.characteristics.CharacteristicModifier;
 import de.linket.rpg.wh40k.bc.player.skills.SkillModifier;
 import de.linket.rpg.wh40k.bc.player.special.SpecialModifier;
@@ -20,26 +23,45 @@ public enum TalentType implements GameObject
 {
     BLA(new SpecialModifier(SpecialType.WOUNDS, 3)),
     FAST(new CharacteristicModifier(CharacteristicType.AGILITY, 2)),
-    // FAT(new CharacteristicBonusModifier(CharacteristicType.INTELLIGENCE, 3)),
+    YOUNG(new CharacteristicBonusModifier(CharacteristicType.INTELLIGENCE, 3)),
     FAT(new SkillModifier(SkillType.MEDICAE, 10)),
+    RESISTANCE(true),
+    RESISTANCE_POISON(RESISTANCE, new TextModifier(new TextObject("INCREASED POISON RESISTANCE"))),
+    RESISTANCE_FIRE(RESISTANCE, new TextModifier(new TextObject("INCREASED FIRE RESISTANCE"))),
     TODO(new SkillModifier(SkillType.DODGE, 10));
 
     private List<Modifier<?>> modifiers;
     private boolean advancable;
-    private SkillType parent;
+    private TalentType parent;
     private boolean specialisable;
 
-    private TalentType(boolean specialisable, SkillType parent, boolean advancable, Modifier<?>... modifiers)
+    private TalentType(boolean specialisable, TalentType parent, boolean advancable, Modifier<?>... modifiers)
     {
         this.specialisable = specialisable;
         this.advancable = advancable;
         this.parent = parent;
-        this.modifiers = Arrays.asList(modifiers);
+        if (modifiers != null)
+        {
+            this.modifiers = Arrays.asList(modifiers);
+        }
     }
 
-    private TalentType(boolean specialisable, SkillType parent, Modifier<?>... modifiers)
+    private TalentType(boolean specialisable, TalentType parent, boolean advancable)
     {
-        this(specialisable, parent, false, modifiers);
+        this.specialisable = specialisable;
+        this.advancable = advancable;
+        this.parent = parent;
+        this.modifiers = null;
+    }
+
+    private TalentType(TalentType parent, Modifier<?>... modifiers)
+    {
+        this(false, parent, false, modifiers);
+    }
+
+    private TalentType(boolean specialisable)
+    {
+        this(specialisable, null, false);
     }
 
     private TalentType(boolean advancable, Modifier<?>... modifiers)
@@ -68,7 +90,7 @@ public enum TalentType implements GameObject
     }
 
     @JsonIgnore
-    public SkillType getParent()
+    public TalentType getParent()
     {
         return this.parent;
     }

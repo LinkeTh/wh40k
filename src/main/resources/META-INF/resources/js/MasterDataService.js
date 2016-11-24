@@ -17,7 +17,7 @@ function($rootScope, $http)
     this.armors = [];
     this.miscItems = [];
     this.spells = [];
-    
+
     this.getDisgraces = function()
     {
         $http(
@@ -35,7 +35,7 @@ function($rootScope, $http)
             console.log("Server Error (" + status + ")\n" + JSON.stringify(data, null, "    "));
         });
     };
-    
+
     this.getPrides = function()
     {
         $http(
@@ -52,8 +52,8 @@ function($rootScope, $http)
         {
             console.log("Server Error (" + status + ")\n" + JSON.stringify(data, null, "    "));
         });
-    };    
-    
+    };
+
     this.getMotivations = function()
     {
         $http(
@@ -71,7 +71,30 @@ function($rootScope, $http)
             console.log("Server Error (" + status + ")\n" + JSON.stringify(data, null, "    "));
         });
     };
-    
+
+    this.getSubTalents = function($talent)
+    {
+        var url = 'http://localhost:9000/api/v1/data/talents/' + $talent.name + '/sub-talents';
+
+        $http(
+        {
+            method : 'GET',
+            url : url,
+            withCredentials : true,
+            cache : false,
+        }).success(function(data, status, headers, config)
+        {
+            console.log("Server Response (" + status + ")\n" + JSON.stringify(data, null, "    "));
+            if (data)
+            {
+                $talent.subtalents = data;
+            }
+        }).error(function(data, status, headers, config)
+        {
+            console.log("Server Error (" + status + ")\n" + JSON.stringify(data, null, "    "));
+        });
+    };
+
     this.getSubSkills = function($skill)
     {
         var url = 'http://localhost:9000/api/v1/data/skills/' + $skill.name + '/sub-skills';
@@ -84,31 +107,45 @@ function($rootScope, $http)
             cache : false,
         }).success(function(data, status, headers, config)
         {
-        	console.log("Server Response (" + status + ")\n" + JSON.stringify(data, null, "    "));
-        	if(data)
-        	{
-        		$skill.subskills = data;
-        	}
+            console.log("Server Response (" + status + ")\n" + JSON.stringify(data, null, "    "));
+            if (data)
+            {
+                $skill.subskills = data;
+            }
         }).error(function(data, status, headers, config)
         {
             console.log("Server Error (" + status + ")\n" + JSON.stringify(data, null, "    "));
         });
     };
 
+    this.findSubTalents = function($talent)
+    {
+        for ( var id in this.talents)
+        {
+            if (this.talents.hasOwnProperty(id))
+            {
+                if (this.talents[id].name === $talent)
+                {
+                    return this.talents[id].subtalents;
+                }
+            }
+        }
+    };
+
     this.findSubSkills = function($skill)
     {
-    	   for (var id in this.skills)
-           {
-               if (this.skills.hasOwnProperty(id))
-               {
-            	   if(this.skills[id].name === $skill)
-            	   {
-            		   return this.skills[id].subskills;
-            	   }
-               }
-           }
-    }
-    
+        for ( var id in this.skills)
+        {
+            if (this.skills.hasOwnProperty(id))
+            {
+                if (this.skills[id].name === $skill)
+                {
+                    return this.skills[id].subskills;
+                }
+            }
+        }
+    };
+
     this.getSkills = function()
     {
         $http(
@@ -125,7 +162,7 @@ function($rootScope, $http)
 
             for ( var skill in that.skills)
             {
-                if (that.skills.hasOwnProperty(skill))
+                if (that.skills.hasOwnProperty(skill) && that.skills[skill].specialisable)
                 {
                     that.getSubSkills(that.skills[skill]);
                 }
@@ -135,7 +172,7 @@ function($rootScope, $http)
             console.log("Server Error (" + status + ")\n" + JSON.stringify(data, null, "    "));
         });
     };
-    
+
     this.getTalents = function()
     {
         $http(
@@ -148,12 +185,20 @@ function($rootScope, $http)
         {
             console.log("Server Response (" + status + ")\n" + JSON.stringify(data, null, "    "));
             that.talents = data;
+
+            for ( var talent in that.talents)
+            {
+                if (that.talents.hasOwnProperty(talent) && that.talents[talent].specialisable)
+                {
+                    that.getSubTalents(that.talents[talent]);
+                }
+            }
         }).error(function(data, status, headers, config)
         {
             console.log("Server Error (" + status + ")\n" + JSON.stringify(data, null, "    "));
         });
     };
-    
+
     this.getClasses = function()
     {
         $http(

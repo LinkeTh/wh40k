@@ -10,20 +10,22 @@ import de.linket.rpg.wh40k.bc.types.TalentType;
 
 public class ApostateTalentWrapper implements SelectionWrapper<TalentType>
 {
-	@Override
-	public List<SelectionContainer<TalentType>> getSelectionContainer()
-	{
-		List<SelectionContainer<TalentType>> result = new ArrayList<>();
+    @Override
+    public List<SelectionContainer<TalentType>> getSelectionContainer()
+    {
+        List<SelectionContainer<TalentType>> result = new ArrayList<>();
 
-		SelectionContainer<TalentType> c1 = new SingleComposer<TalentType>(TalentType.FAST);
-		SelectionContainer<TalentType> c2 = new SingleComposer<TalentType>(TalentType.FAT);
-		SelectionContainer<TalentType> c3 = new SingleComposer<TalentType>(TalentType.TODO);
+        SelectionContainer<TalentType> c1 = new SingleComposer<TalentType>(TalentType.FAST);
+        SelectionContainer<TalentType> c2 = new SingleComposer<TalentType>(TalentType.FAT);
+        SelectionContainer<TalentType> c3 = new SingleComposer<TalentType>(TalentType.TODO);
+        SelectionContainer<TalentType> c4 = new SingleComposer<TalentType>(TalentType.RESISTANCE);
 
-		result.add(c1);
-		result.add(c2);
-		result.add(c3);
+        result.add(c1);
+        result.add(c2);
+        result.add(c3);
+        result.add(c4);
 
-		return result;
-	}
+        return result;
+    }
 
 }
