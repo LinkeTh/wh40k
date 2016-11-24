@@ -20,8 +20,8 @@ public class DecisionComposer<T> implements SelectionContainer<T>
     }
 
     @Override
-    public ContainerType getType()
+    public SelectionType getType()
     {
-        return ContainerType.DECISION;
+        return SelectionType.DECISION;
     }
 }

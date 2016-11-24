@@ -28,8 +28,8 @@ public class MultiComposer<T> implements SelectionContainer<T>
     }
 
     @Override
-    public ContainerType getType()
+    public SelectionType getType()
     {
-        return ContainerType.MULTI;
+        return SelectionType.MULTI;
     }
 }

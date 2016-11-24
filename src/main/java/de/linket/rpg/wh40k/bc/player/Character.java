@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import de.linket.rpg.wh40k.bc.alignment.Alignment;
+import de.linket.rpg.wh40k.bc.alignment.AlignmentTracker;
 import de.linket.rpg.wh40k.bc.characteristics.Characteristic;
 import de.linket.rpg.wh40k.bc.common.GameObject;
 import de.linket.rpg.wh40k.bc.exp.Experience;
@@ -19,6 +21,7 @@ import de.linket.rpg.wh40k.bc.special.Initiative;
 import de.linket.rpg.wh40k.bc.special.PsyRating;
 import de.linket.rpg.wh40k.bc.special.Wounds;
 import de.linket.rpg.wh40k.bc.talents.Talent;
+import de.linket.rpg.wh40k.bc.types.AlignmentType;
 import de.linket.rpg.wh40k.bc.types.CharacterStateType;
 import de.linket.rpg.wh40k.bc.types.CharacteristicType;
 import de.linket.rpg.wh40k.bc.types.ClassType;
@@ -40,6 +43,8 @@ public class Character
 
     @SuppressWarnings("unused")
     private Inventory inventory;
+
+    private AlignmentTracker alignments = new AlignmentTracker();
 
     private String id;
 
@@ -70,6 +75,8 @@ public class Character
         this.inventory = new Inventory(this);
         this.race = race;
         this.exp = race.getStartExperience();
+
+        this.alignments.addAlignments(new Alignment(AlignmentType.UNDIVIDED));
     }
 
     public String getId()
@@ -191,45 +198,25 @@ public class Character
     {
         Experience cost = this.calculateCosts(type);
 
-        List<Characteristic> result = this.getCharacteristics().stream().filter(i -> i.getType().equals(type)).collect(Collectors.toList());
+        Characteristic result = this.getCharacteristic(type);
 
-        // Optional<Characteristic> test =
-        // this.getCharacteristics().stream().filter(i ->
-        // i.getType().equals(type)).collect(Collectors.reducing((a, b)
-        // -> null));
-        // Characteristic bla = test.get();
-
-        result.get(0).advance(cost);
+        result.advance(cost);
     }
 
     public void advanceSkill(SkillType type)
     {
         Experience cost = this.calculateCosts(type);
 
-        List<Skill> result = this.getSkills().stream().filter(i -> i.getType().equals(type)).collect(Collectors.toList());
+        Skill result = this.getSkill(type);
 
-        // Optional<Characteristic> test =
-        // this.getCharacteristics().stream().filter(i ->
-        // i.getType().equals(type)).collect(Collectors.reducing((a, b)
-        // -> null));
-        // Characteristic bla = test.get();
-
-        result.get(0).advance(cost);
+        result.advance(cost);
     }
 
     public void advanceTalent(TalentType type)
     {
         Experience cost = this.calculateCosts(type);
 
-        List<Talent> result = this.getTalents().stream().filter(i -> i.getType().equals(type)).collect(Collectors.toList());
-
-        // Optional<Characteristic> test =
-        // this.getCharacteristics().stream().filter(i ->
-        // i.getType().equals(type)).collect(Collectors.reducing((a, b)
-        // -> null));
-        // Characteristic bla = test.get();
-
-        Talent talent = result.get(0);
+        Talent talent = this.getTalent(type);
 
         if (!talent.getModifiers().isEmpty())
         {
@@ -242,7 +229,6 @@ public class Character
         {
             talent.getModifiers().forEach(i -> this.addModifier(i));
         }
-
     }
 
     private Experience calculateCosts(GameObject type)
@@ -449,6 +435,16 @@ public class Character
                 break;
 
         }
+    }
+
+    public void setAlignments(AlignmentTracker alignments)
+    {
+        this.alignments = alignments;
+    }
+
+    public AlignmentTracker getAlignments()
+    {
+        return this.alignments;
     }
 
     public void setCharacteristics(Set<Characteristic> characteristics)

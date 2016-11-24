@@ -23,8 +23,8 @@ public class SingleComposer<T> implements SelectionContainer<T>
     }
 
     @Override
-    public ContainerType getType()
+    public SelectionType getType()
     {
-        return ContainerType.SINGLE;
+        return SelectionType.SINGLE;
     }
 }

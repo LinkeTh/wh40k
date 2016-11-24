@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface SelectionContainer<T>
 {
-    public ContainerType getType();
+    public SelectionType getType();
 
     public List<T> getValues();
 }
