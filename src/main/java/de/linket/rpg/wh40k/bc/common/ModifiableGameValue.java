@@ -37,6 +37,7 @@ public abstract class ModifiableGameValue<T extends GameObject> implements GameV
 
 	@SuppressWarnings("unused")
 	private void setType(T type) {
+		this.type = type;
 	}
 
 	@Override

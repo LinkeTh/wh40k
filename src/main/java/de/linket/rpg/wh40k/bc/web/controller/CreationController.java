@@ -40,225 +40,224 @@ import de.linket.rpg.wh40k.bc.web.service.TraitService;;
 @Api(value = "creation", description = "Creation resource endpoint")
 public class CreationController
 {
-    private static final Logger log = LoggerFactory.getLogger(CreationController.class);
+	private static final Logger log = LoggerFactory.getLogger(CreationController.class);
 
-    private static Map<String, Character> characterMap = new HashMap<>();
+	private static Map<String, Character> characterMap = new HashMap<>();
 
-    @Autowired
-    private TraitService traitService;
+	@Autowired
+	private TraitService traitService;
 
-    @Autowired
-    private TalentService talentService;
+	@Autowired
+	private TalentService talentService;
 
-    @Autowired
-    private SkillService skillService;
+	@Autowired
+	private SkillService skillService;
 
-    @Autowired
-    private ClassService classService;
+	@Autowired
+	private ClassService classService;
 
-    @RequestMapping(value = "/character/{id}", method = RequestMethod.GET)
-    public Character getCharacter(@PathVariable("id") String id)
-    {
+	@RequestMapping(value = "/character/{id}", method = RequestMethod.GET)
+	public Character getCharacter(@PathVariable("id") String id)
+	{
 
-        log.debug("Get character " + id);
+		log.debug("Get character " + id);
 
-        Assert.notNull(id);
+		Assert.notNull(id);
 
-        return characterMap.get(id);
-    }
+		return characterMap.get(id);
+	}
 
-    @RequestMapping(value = "/character/{id}/characteristics", method = RequestMethod.PUT)
-    public Character addCharacteristics(@PathVariable("id") String id, @RequestBody Characteristic[] characteristics)
-    {
+	@RequestMapping(value = "/character/{id}/characteristics", method = RequestMethod.PUT)
+	public Character addCharacteristics(@PathVariable("id") String id, @RequestBody Characteristic[] characteristics)
+	{
 
-        log.debug("Add characteristics to " + id);
+		log.debug("Add characteristics to " + id);
 
-        Assert.notNull(id);
-        Assert.notEmpty(characteristics);
+		Assert.notNull(id);
+		Assert.notEmpty(characteristics);
 
-        Character character = characterMap.get(id);
+		Character character = characterMap.get(id);
 
-        Assert.notNull(character);
+		Assert.notNull(character);
 
-        Arrays.asList(characteristics).forEach(i -> character.addCharacteristic(i));
+		Arrays.asList(characteristics).forEach(i -> character.addCharacteristic(i));
 
-        return character;
-    }
+		return character;
+	}
 
-    @RequestMapping(value = "/character/{id}/class", method = RequestMethod.PUT)
-    public Character addClass(@PathVariable("id") String id, @RequestBody ClassType classType)
-    {
+	@RequestMapping(value = "/character/{id}/class", method = RequestMethod.PUT)
+	public Character addClass(@PathVariable("id") String id, @RequestBody ClassType classType)
+	{
 
-        log.debug("Add class to " + id);
+		log.debug("Add class to " + id);
 
-        Assert.notNull(id);
-        Assert.notNull(classType);
+		Assert.notNull(id);
+		Assert.notNull(classType);
 
-        Character character = characterMap.get(id);
+		Character character = characterMap.get(id);
 
-        Assert.notNull(character);
+		Assert.notNull(character);
 
-        character.setClazz(classType);
+		character.setClazz(classType);
+		character.setWounds(null);
+		character.setPsyRating(this.getPsyRating(classType));
 
-        character.setPsyRating(this.getPsyRating(classType));
+		return character;
+	}
 
-        return character;
-    }
+	@RequestMapping(value = "/character/{id}/wounds", method = RequestMethod.PUT)
+	public Character addWounds(@PathVariable("id") String id, @RequestBody Wounds wound)
+	{
+		log.debug("Add wounds to " + id);
 
-    @RequestMapping(value = "/character/{id}/wounds", method = RequestMethod.PUT)
-    public Character addWounds(@PathVariable("id") String id, @RequestBody Wounds wound)
-    {
+		Assert.notNull(id);
+		Assert.notNull(wound);
 
-        log.debug("Add wounds to " + id);
+		Character character = characterMap.get(id);
 
-        Assert.notNull(id);
-        Assert.notNull(wound);
+		Assert.notNull(character);
 
-        Character character = characterMap.get(id);
+		character.setWounds(wound);
+		;
 
-        Assert.notNull(character);
+		return character;
+	}
 
-        character.setWounds(wound);
-        ;
+	@RequestMapping(value = "/character", method = RequestMethod.POST)
+	public Character createCharacter(@RequestBody RaceType raceType)
+	{
 
-        return character;
-    }
+		log.debug("Create new character");
 
-    @RequestMapping(value = "/character", method = RequestMethod.POST)
-    public Character createCharacter(@RequestBody RaceType raceType)
-    {
+		Assert.notNull(raceType);
 
-        log.debug("Create new character");
+		Character pc = new Character(raceType);
+		pc.setState(CharacterStateType.IN_CREATION);
 
-        Assert.notNull(raceType);
+		characterMap.put(pc.getId(), pc);
 
-        Character pc = new Character(raceType);
-        pc.setState(CharacterStateType.IN_CREATION);
+		return pc;
+	}
 
-        characterMap.put(pc.getId(), pc);
+	// @RequestMapping(value = "/character/race/{raceType}", method =
+	// RequestMethod.GET)
+	// public Character createNewChar(@PathVariable("raceType") RaceType
+	// raceType)
+	// {
+	// Character pc = new Character(raceType);
+	// pc.setState(CharacterStateType.IN_CREATION);
+	//
+	// log.debug("Create new character");
+	// return pc;
+	// }
 
-        return pc;
-    }
+	@RequestMapping(value = "/classes/{classType}/psy-rating", method = RequestMethod.GET)
+	public PsyRating getPsyRating(@PathVariable("classType") ClassType classType)
+	{
+		log.debug("Get psyrating for class " + classType);
 
-    // @RequestMapping(value = "/character/race/{raceType}", method =
-    // RequestMethod.GET)
-    // public Character createNewChar(@PathVariable("raceType") RaceType
-    // raceType)
-    // {
-    // Character pc = new Character(raceType);
-    // pc.setState(CharacterStateType.IN_CREATION);
-    //
-    // log.debug("Create new character");
-    // return pc;
-    // }
+		Assert.notNull(classType);
 
-    @RequestMapping(value = "/classes/{classType}/psy-rating", method = RequestMethod.GET)
-    public PsyRating getPsyRating(@PathVariable("classType") ClassType classType)
-    {
-        log.debug("Get psyrating for class " + classType);
+		PsyRating value = classType.getPsyRating();
 
-        Assert.notNull(classType);
+		return value;
+	}
 
-        PsyRating value = classType.getPsyRating();
+	@RequestMapping(value = "/classes/{classType}/wounds", method = RequestMethod.GET)
+	public Wounds getWounds(@PathVariable("classType") ClassType classType)
+	{
 
-        return value;
-    }
+		log.debug("Roll wounds for class " + classType);
 
-    @RequestMapping(value = "/classes/{classType}/wounds", method = RequestMethod.GET)
-    public Wounds getWounds(@PathVariable("classType") ClassType classType)
-    {
+		Assert.notNull(classType);
 
-        log.debug("Roll wounds for class " + classType);
+		Wounds value = classType.getWound();
+		value.roll();
 
-        Assert.notNull(classType);
+		return value;
+	}
 
-        Wounds value = classType.getWound();
-        value.roll();
+	@RequestMapping(value = "/races/{raceType}/characteristics", method = RequestMethod.GET)
+	public List<Characteristic> getCharacteristics(@PathVariable("raceType") RaceType raceType)
+	{
+		log.debug("Roll characteristics for race " + raceType);
 
-        return value;
-    }
+		Assert.notNull(raceType);
 
-    @RequestMapping(value = "/races/{raceType}/characteristics", method = RequestMethod.GET)
-    public List<Characteristic> getCharacteristics(@PathVariable("raceType") RaceType raceType)
-    {
-        log.debug("Roll characteristics for race " + raceType);
+		List<Characteristic> characteristics = Arrays.asList(CharacteristicType.values()).stream().map(item -> new Characteristic(item, raceType))
+				.peek(Characteristic::roll).collect(Collectors.toList());
 
-        Assert.notNull(raceType);
+		return characteristics;
+	}
 
-        List<Characteristic> characteristics = Arrays.asList(CharacteristicType.values()).stream().map(item -> new Characteristic(item, raceType))
-                        .peek(Characteristic::roll).collect(Collectors.toList());
+	@RequestMapping(value = "/races/{raceType}/classes", method = RequestMethod.GET)
+	public List<ClassType> getAvailableClasses(@PathVariable("raceType") RaceType raceType)
+	{
+		log.debug("Getting classes for race " + raceType);
 
-        return characteristics;
-    }
+		Assert.notNull(raceType);
 
-    @RequestMapping(value = "/races/{raceType}/classes", method = RequestMethod.GET)
-    public List<ClassType> getAvailableClasses(@PathVariable("raceType") RaceType raceType)
-    {
-        log.debug("Getting classes for race " + raceType);
+		return this.classService.findByRace(raceType);
+	}
 
-        Assert.notNull(raceType);
+	@RequestMapping(value = "/classes/{classType}/talents", method = RequestMethod.GET)
+	public SelectionWrapper<TalentType> getTalentsForClass(@PathVariable("classType") ClassType classType)
+	{
+		log.debug("Getting talents for class " + classType);
 
-        return this.classService.findByRace(raceType);
-    }
+		Assert.notNull(classType);
 
-    @RequestMapping(value = "/classes/{classType}/talents", method = RequestMethod.GET)
-    public SelectionWrapper<TalentType> getTalentsForClass(@PathVariable("classType") ClassType classType)
-    {
-        log.debug("Getting talents for class " + classType);
+		return this.talentService.findByClass(classType);
+	}
 
-        Assert.notNull(classType);
+	@RequestMapping(value = "/classes/{classType}/skills", method = RequestMethod.GET)
+	public SelectionWrapper<SkillType> getSkillsForClass(@PathVariable("classType") ClassType classType)
+	{
+		log.debug("Getting skills for class " + classType);
 
-        return this.talentService.findByClass(classType);
-    }
+		Assert.notNull(classType);
 
-    @RequestMapping(value = "/classes/{classType}/skills", method = RequestMethod.GET)
-    public SelectionWrapper<SkillType> getSkillsForClass(@PathVariable("classType") ClassType classType)
-    {
-        log.debug("Getting skills for class " + classType);
+		return this.skillService.findByClass(classType);
+	}
 
-        Assert.notNull(classType);
+	@RequestMapping(value = "/classes/{classType}/trits", method = RequestMethod.GET)
+	public SelectionWrapper<TraitType> getTraitsForClass(@PathVariable("classType") ClassType classType)
+	{
+		log.debug("Getting skills for class " + classType);
 
-        return this.skillService.findByClass(classType);
-    }
+		Assert.notNull(classType);
 
-    @RequestMapping(value = "/classes/{classType}/trits", method = RequestMethod.GET)
-    public SelectionWrapper<TraitType> getTraitsForClass(@PathVariable("classType") ClassType classType)
-    {
-        log.debug("Getting skills for class " + classType);
+		return this.traitService.findByClass(classType);
+	}
 
-        Assert.notNull(classType);
+	@RequestMapping(value = "/races/{raceType}/talents", method = RequestMethod.GET)
+	public SelectionWrapper<TalentType> getTalentsForRace(@PathVariable("raceType") RaceType raceType)
+	{
+		log.debug("Getting talents for race " + raceType);
 
-        return this.traitService.findByClass(classType);
-    }
+		Assert.notNull(raceType);
 
-    @RequestMapping(value = "/races/{raceType}/talents", method = RequestMethod.GET)
-    public SelectionWrapper<TalentType> getTalentsForRace(@PathVariable("raceType") RaceType raceType)
-    {
-        log.debug("Getting talents for race " + raceType);
+		return this.talentService.findByRace(raceType);
+	}
 
-        Assert.notNull(raceType);
+	@RequestMapping(value = "/races/{raceType}/skills", method = RequestMethod.GET)
+	public SelectionWrapper<SkillType> getSkillsForRace(@PathVariable("raceType") RaceType raceType)
+	{
+		log.debug("Getting skills for race " + raceType);
 
-        return this.talentService.findByRace(raceType);
-    }
+		Assert.notNull(raceType);
 
-    @RequestMapping(value = "/races/{raceType}/skills", method = RequestMethod.GET)
-    public SelectionWrapper<SkillType> getSkillsForRace(@PathVariable("raceType") RaceType raceType)
-    {
-        log.debug("Getting skills for race " + raceType);
+		return this.skillService.findByRace(raceType);
+	}
 
-        Assert.notNull(raceType);
+	@RequestMapping(value = "/races/{raceType}/traits", method = RequestMethod.GET)
+	public SelectionWrapper<TraitType> getTraitsForRace(@PathVariable("raceType") RaceType raceType)
+	{
+		log.debug("Getting skills for race " + raceType);
 
-        return this.skillService.findByRace(raceType);
-    }
+		Assert.notNull(raceType);
 
-    @RequestMapping(value = "/races/{raceType}/traits", method = RequestMethod.GET)
-    public SelectionWrapper<TraitType> getTraitsForRace(@PathVariable("raceType") RaceType raceType)
-    {
-        log.debug("Getting skills for race " + raceType);
-
-        Assert.notNull(raceType);
-
-        return this.traitService.findByRace(raceType);
-    }
+		return this.traitService.findByRace(raceType);
+	}
 
 }
