@@ -1,6 +1,8 @@
-application.controller("CreationController", [ "$scope", "$window", "$rootScope", "$location", "CreationService", "MasterDataService",
+application.controller("CreationController", CreationController);
 
-function($scope, $window, $rootScope, $location, CreationService, MasterDataService)
+CreationController.$inject = [ "$scope", "$window", "$rootScope", "$location", "CreationService", "MasterDataService"];
+
+function CreationController($scope, $window, $rootScope, $location, CreationService, MasterDataService)
 {
     console.log("CreationController::CreationController()");
     
@@ -57,11 +59,11 @@ function($scope, $window, $rootScope, $location, CreationService, MasterDataServ
         	CreationService.skills = [];
             CreationService.wounds = {};
             $scope.acceptedWounds = false;
-
-            CreationService.getSkillsForRace(CreationService.character.race);
-            CreationService.getTalentsForRace(CreationService.character.race);
             CreationService.getSkillsForClass($class);
             CreationService.getTalentsForClass($class);
+            CreationService.getSkillsForRace(CreationService.character.race);
+            CreationService.getTalentsForRace(CreationService.character.race);
+   
         }
     }
         
@@ -86,4 +88,4 @@ function($scope, $window, $rootScope, $location, CreationService, MasterDataServ
         return CreationService;
     }; 
         
-} ]);
+} 

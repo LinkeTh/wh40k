@@ -40,7 +40,7 @@
 
 	<div ng-controller="CreationController" class="medium-12 table-list">
 
-		<div class="medium-8 columns">
+		<div class="medium-7 columns">
 
 			<div class="medium-12">
 				<div class="subHeader">RACES</div>
@@ -102,61 +102,55 @@
 					
 						<div class="subHeader">SKILLS</div>
 						<div ng-repeat="container in creation().skills">
-							<div ng-repeat="skill in container.selectionContainer">
-								<div class="medium-12 table-list">
-									<div ng-if="skill.type == 'SINGLE'">
-										<div ng-if="skill.values[0].specialisable">
-											<div ng-repeat="subskill in masterData().findSubSkills(skill.values[0].name)" class="medium-6 columns">
-												<label><input type="radio" ng-model="$parent.selectedItem" value="{{ subskill.name }}"> {{ subskill.name }} </label>
-											</div>
-										</div>
-										<div ng-if="!skill.values[0].specialisable" class="medium-12 columns">
-											<label><input ng-disabled="true" type="checkbox" checked="checked" value=" {{ skill.values[0].name }} "> {{ skill.values[0].name }} </label>
+							<div ng-repeat="skill in container.selectionContainer" class="medium-12 table-list">
+								<div ng-if="skill.type == 'SINGLE'">
+									<div ng-if="skill.values[0].specialisable">
+										<div ng-repeat="subskill in masterData().findSubSkills(skill.values[0].name)" class="medium-6 columns">
+											<label><input type="radio" ng-model="$parent.selectedItem" value="{{ subskill.name }}"> {{ subskill.name }} </label>
 										</div>
 									</div>
-									<div ng-if="skill.type == 'MULTI'">
-										<div ng-if="skill.values[0].specialisable">
-											<div ng-repeat="subskill in masterData().findSubSkills(skill.values[0].name)" class="medium-6 columns">
-												<label><input type="checkbox" ng-model="subskill.checked" ng-change="checkChanged(subskill, checkedSkills)" ng-disabled="checkedSkills==skill.values.length  && !subskill.checked"> {{ subskill.name }} </label>
-											</div>
+									<div ng-if="!skill.values[0].specialisable" class="medium-12 columns">
+										<label><input ng-disabled="true" type="checkbox" checked="checked" value=" {{ skill.values[0].name }} "> {{ skill.values[0].name }} </label>
+									</div>
+								</div>
+								<div ng-if="skill.type == 'MULTI'">
+									<div ng-if="skill.values[0].specialisable">
+										<div ng-repeat="subskill in masterData().findSubSkills(skill.values[0].name)" class="medium-6 columns">
+											<label><input type="checkbox" ng-model="subskill.checked" ng-change="checkChanged(subskill, checkedSkills)" ng-disabled="checkedSkills==skill.values.length  && !subskill.checked"> {{ subskill.name }} </label>
 										</div>
 									</div>
-									<div ng-if="skill.type == 'DECISION'" ng-init="selectedItem = skill.values[0].name">
-										<div class="medium-6 columns">
-											<label><input type="radio" ng-model="selectedItem" value="{{skill.values[0].name}}"> {{ skill.values[0].name }}</label>
-										</div>
-										<div class="medium-6 columns">
-											<label><input type="radio" ng-model="selectedItem" value="{{skill.values[1].name}}"> {{ skill.values[1].name }}</label>
-										</div>
+								</div>
+								<div ng-if="skill.type == 'DECISION'" ng-init="selectedItem = skill.values[0].name">
+									<div class="medium-6 columns">
+										<label><input type="radio" ng-model="selectedItem" value="{{skill.values[0].name}}"> {{ skill.values[0].name }}</label>
+									</div>
+									<div class="medium-6 columns">
+										<label><input type="radio" ng-model="selectedItem" value="{{skill.values[1].name}}"> {{ skill.values[1].name }}</label>
 									</div>
 								</div>
 								<hr class="separator">						
 							</div>
 						</div>
 
-<!-- 						<hr class="separator">
- -->
 						<div class="subHeader">TALENTS</div>
 						<div ng-repeat="container in creation().talents">
-							<div ng-repeat="talent in container.selectionContainer">
-								<div class="medium-12  table-list">
-									<div ng-if="talent.type == 'SINGLE' || skill.type == 'MULTI'">
-										<div ng-if="talent.values[0].specialisable">
-											<div ng-repeat="subtalent in masterData().findSubTalents(talent.values[0].name)" class="medium-12 columns">
-												<label><input type="radio" ng-model="$parent.selectedItem" value="{{ subtalent.name }}"> {{ subtalent.name }}</label> <span ng-show="subtalent.modifiers" ng-repeat="value in subtalent.modifiers" class="characeteristic"><span ng-show="!value.type.name">{{ value.type }}</span><span ng-show="value.type.name">{{ value.type.name }}</span> + {{value.value}} </span>
-											</div>
-										</div>
-										<div ng-if="!talent.values[0].specialisable" class="medium-12 columns">
-											<label><input ng-disabled="true" type="checkbox" checked="checked" value=" {{ talent.values[0].name }} "> {{ talent.values[0].name }} </label> <span ng-show="talent.values[0].modifiers" ng-repeat="value in talent.values[0].modifiers" class="characeteristic"><span ng-show="!value.type.name">{{ value.type }}</span><span ng-show="value.type.name">{{ value.type.name }}</span> + {{value.value}} </span>
+							<div ng-repeat="talent in container.selectionContainer"  class="medium-12  table-list">
+								<div ng-if="talent.type == 'SINGLE' || skill.type == 'MULTI'">
+									<div ng-if="talent.values[0].specialisable">
+										<div ng-repeat="subtalent in masterData().findSubTalents(talent.values[0].name)" class="medium-12 columns">
+											<label><input type="radio" ng-model="$parent.selectedItem" value="{{ subtalent.name }}"> {{ subtalent.name }}</label> <span ng-show="subtalent.modifiers" ng-repeat="value in subtalent.modifiers" class="characeteristic"><span ng-show="!value.type.name">{{ value.type }}</span><span ng-show="value.type.name">{{ value.type.name }}</span> + {{value.value}} </span>
 										</div>
 									</div>
-									<div ng-if="skill.type == 'DECISION'" ng-init="selectedItem = talent.values[0].name">
-										<div class="medium-6 columns">
-											<input type="radio" ng-model="selectedItem" value="{{talent.values[0].name}}"> {{ talent.values[0].name }} <span ng-show="talent.values[0].modifiers" ng-repeat="value in talent.values[0].modifiers" class="characeteristic"><span ng-show="!value.type.name">{{ value.type }}</span><span ng-show="value.type.name">{{ value.type.name }}</span> + {{value.value}} </span>
-										</div>
-										<div class="medium-6 columns">
-											<input type="radio" ng-model="selectedItem" value="{{talent.values[1].name}}"> {{ talent.values[1].name }} <span ng-show="talent.values[1].modifiers" ng-repeat="value in talent.values[1].modifiers" class="characeteristic"><span ng-show="!value.type.name">{{ value.type }}</span><span ng-show="value.type.name">{{ value.type.name }}</span> + {{value.value}} </span>
-										</div>
+									<div ng-if="!talent.values[0].specialisable" class="medium-12 columns">
+										<label><input ng-disabled="true" type="checkbox" checked="checked" value=" {{ talent.values[0].name }} "> {{ talent.values[0].name }} </label> <span ng-show="talent.values[0].modifiers" ng-repeat="value in talent.values[0].modifiers" class="characeteristic"><span ng-show="!value.type.name">{{ value.type }}</span><span ng-show="value.type.name">{{ value.type.name }}</span> + {{value.value}} </span>
+									</div>
+								</div>
+								<div ng-if="skill.type == 'DECISION'" ng-init="selectedItem = talent.values[0].name">
+									<div class="medium-6 columns">
+										<input type="radio" ng-model="selectedItem" value="{{talent.values[0].name}}"> {{ talent.values[0].name }} <span ng-show="talent.values[0].modifiers" ng-repeat="value in talent.values[0].modifiers" class="characeteristic"><span ng-show="!value.type.name">{{ value.type }}</span><span ng-show="value.type.name">{{ value.type.name }}</span> + {{value.value}} </span>
+									</div>
+									<div class="medium-6 columns">
+										<input type="radio" ng-model="selectedItem" value="{{talent.values[1].name}}"> {{ talent.values[1].name }} <span ng-show="talent.values[1].modifiers" ng-repeat="value in talent.values[1].modifiers" class="characeteristic"><span ng-show="!value.type.name">{{ value.type }}</span><span ng-show="value.type.name">{{ value.type.name }}</span> + {{value.value}} </span>
 									</div>
 								</div>
 							</div>
@@ -165,38 +159,42 @@
 						<hr class="separator">
 
 						<div class="subHeader">PRIDES</div>
-						<div ng-repeat="pride in masterData().prides">
-							<div>
-								{{ pride.name }} <span ng-show="pride.modifiers" ng-repeat="value in pride.modifiers" class="characeteristic"><span ng-show="!value.type.name">{{ value.type }}</span><span ng-show="value.type.name">{{ value.type.name }}</span> + {{value.value}} </span>
+						<div ng-repeat="pride in masterData().prides"  class="medium-12  table-list">
+							<div class="medium-12 columns">
+								<label>{{ pride.name }} </label><span ng-show="pride.modifiers" ng-repeat="value in pride.modifiers" class="characeteristic"><span ng-show="!value.type.name">{{ value.type }}</span><span ng-show="value.type.name">{{ value.type.name }}</span> + {{value.value}} </span>
 							</div>
 						</div>
 
 						<hr class="separator">
 
 						<div class="subHeader">MOTIVATIONS</div>
-						<div ng-repeat="motivation in masterData().motivations">
-							<div>
-								{{ motivation.name }} <span ng-show="motivation.modifiers" ng-repeat="value in motivation.modifiers" class="characeteristic"><span ng-show="!value.type.name">{{ value.type }}</span><span ng-show="value.type.name">{{ value.type.name }}</span> + {{value.value}} </span>
+						<div ng-repeat="motivation in masterData().motivations" class="medium-12  table-list">
+							<div class="medium-12 columns">
+								<label>{{ motivation.name }} </label><span ng-show="motivation.modifiers" ng-repeat="value in motivation.modifiers" class="characeteristic"><span ng-show="!value.type.name">{{ value.type }}</span><span ng-show="value.type.name">{{ value.type.name }}</span> + {{value.value}} </span>
 							</div>
 						</div>
 
 						<hr class="separator">
 
 						<div class="subHeader">DISGRACES</div>
-						<div ng-repeat="disgrace in masterData().disgraces">
-							<div>
-								{{ disgrace.name }} <span ng-show="disgrace.modifiers" ng-repeat="value in disgrace.modifiers" class="characeteristic"><span ng-show="!value.type.name">{{ value.type }}</span><span ng-show="value.type.name">{{ value.type.name }}</span> + {{value.value}} </span>
+						<div ng-repeat="disgrace in masterData().disgraces"  class="medium-12  table-list">
+							<div class="medium-12 columns">
+								<label>{{ disgrace.name }} </label><span ng-show="disgrace.modifiers" ng-repeat="value in disgrace.modifiers" class="characeteristic"><span ng-show="!value.type.name">{{ value.type }}</span><span ng-show="value.type.name">{{ value.type.name }}</span> + {{value.value}} </span>
 							</div>
 						</div>
 
-					</div>
-				</div>
-			</div>
-		</div>
+					</div> <!-- selected Class -->
+					
+				</div> <!-- accepted Characteristics -->
+				
+			</div> <!-- selected Race -->
+			
+		</div> <!-- left side panel -->
 
-		<div ng-show="debug" class="medium-4 columns end" style="background-color: grey;">
+		<div ng-show="debug" class="medium-5 columns end" style="background-color: grey;">
 			<pre>{{ debugCharacter() }}</pre>
 		</div>
-	</div>
+		
+	</div> <!--  creation controller end -->
 </body>
 </html>
