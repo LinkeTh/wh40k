@@ -40,3 +40,9 @@ div
     margin: 0;
     padding: 0.3rem 1rem 0.3rem;
 }
+
+.separator
+{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
