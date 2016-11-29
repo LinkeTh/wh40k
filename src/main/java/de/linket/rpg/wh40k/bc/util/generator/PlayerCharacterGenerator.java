@@ -64,10 +64,10 @@ public class PlayerCharacterGenerator
 
     private void phase3()
     {
-        this.handleSkills(this.pc.getRace().getSkillWrapper());
+        // this.handleSkills(this.pc.getRace().getSkillWrapper());
         this.handleTalents(this.pc.getRace().getTalentWrapper());
 
-        this.handleSkills(this.pc.getClazz().getSkillWrapper());
+        // this.handleSkills(this.pc.getClazz().getSkillWrapper());
         this.handleTalents(this.pc.getClazz().getTalentWrapper());
     }
 

@@ -6,24 +6,25 @@ import java.util.List;
 import de.linket.rpg.wh40k.bc.common.selection.SelectionContainer;
 import de.linket.rpg.wh40k.bc.common.selection.SelectionWrapper;
 import de.linket.rpg.wh40k.bc.common.selection.SingleComposer;
+import de.linket.rpg.wh40k.bc.player.skills.Skill;
 import de.linket.rpg.wh40k.bc.types.SkillType;
 
-public class SpaceMarineSkillWrapper implements SelectionWrapper<SkillType>
+public class SpaceMarineSkillWrapper implements SelectionWrapper<Skill>
 {
     @Override
-    public List<SelectionContainer<SkillType>> getSelectionContainer()
+    public List<SelectionContainer<Skill>> getSelectionContainer()
     {
-        List<SelectionContainer<SkillType>> result = new ArrayList<>();
-        SelectionContainer<SkillType> c1 = new SingleComposer<SkillType>(SkillType.ATHLETICS);
-        SelectionContainer<SkillType> c2 = new SingleComposer<SkillType>(SkillType.AWARENESS);
-        SelectionContainer<SkillType> c3 = new SingleComposer<SkillType>(SkillType.COMMON_LORE_WAR);
-        SelectionContainer<SkillType> c4 = new SingleComposer<SkillType>(SkillType.DODGE);
-        SelectionContainer<SkillType> c5 = new SingleComposer<SkillType>(SkillType.FORBIDDEN_LORE_ADEPTUS_ARTARTES);
-        SelectionContainer<SkillType> c6 = new SingleComposer<SkillType>(SkillType.FORBIDDEN_LORE_HORUS);
-        SelectionContainer<SkillType> c7 = new SingleComposer<SkillType>(SkillType.LINGUISTICST_LOW_GOTIC);
-        SelectionContainer<SkillType> c8 = new SingleComposer<SkillType>(SkillType.NAVIGATION_SURFACE);
-        SelectionContainer<SkillType> c9 = new SingleComposer<SkillType>(SkillType.OPERATE_SURFACE);
-        SelectionContainer<SkillType> c10 = new SingleComposer<SkillType>(SkillType.PARRY);
+        List<SelectionContainer<Skill>> result = new ArrayList<>();
+        SelectionContainer<Skill> c1 = new SingleComposer<Skill>(new Skill(SkillType.ATHLETICS));
+        SelectionContainer<Skill> c2 = new SingleComposer<Skill>(new Skill(SkillType.AWARENESS));
+        SelectionContainer<Skill> c3 = new SingleComposer<Skill>(new Skill(SkillType.COMMON_LORE_WAR));
+        SelectionContainer<Skill> c4 = new SingleComposer<Skill>(new Skill(SkillType.DODGE));
+        SelectionContainer<Skill> c5 = new SingleComposer<Skill>(new Skill(SkillType.FORBIDDEN_LORE_ADEPTUS_ARTARTES));
+        SelectionContainer<Skill> c6 = new SingleComposer<Skill>(new Skill(SkillType.FORBIDDEN_LORE_HORUS));
+        SelectionContainer<Skill> c7 = new SingleComposer<Skill>(new Skill(SkillType.LINGUISTICST_LOW_GOTIC));
+        SelectionContainer<Skill> c8 = new SingleComposer<Skill>(new Skill(SkillType.NAVIGATION_SURFACE));
+        SelectionContainer<Skill> c9 = new SingleComposer<Skill>(new Skill(SkillType.OPERATE_SURFACE));
+        SelectionContainer<Skill> c10 = new SingleComposer<Skill>(new Skill(SkillType.PARRY));
 
         result.add(c1);
         result.add(c2);

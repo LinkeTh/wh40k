@@ -129,7 +129,7 @@
 										</div>
 									</div>
 									<div ng-if="!skill.values[0].specialisable" class="medium-6 columns">
-										<label><input ng-disabled="true" type="checkbox" checked="checked" value=" {{ skill.values[0].name }} "> {{ skill.values[0].name }} </label>
+										<label><input ng-disabled="true" type="checkbox" checked="checked" value=" {{ skill.values[0].name }} "> {{ skill.values[0].name }} +{{ skill.values[0].state.value}} </label>
 									</div>
 								</div>
 								<div ng-if="skill.type == 'MULTI'">
@@ -142,21 +142,21 @@
 								<div ng-if="skill.type == 'DECISION'" ng-init="selectedItem = skill.values[0].name">
 								    <div ng-if="skill.values.length == 2">
 										<div class="medium-6 columns">
-											<label><input type="radio" ng-model="selectedItem" value="{{skill.values[0].name}}"> {{ skill.values[0].name }}</label>
+											<label><input type="radio" ng-model="selectedItem" value="{{skill.values[0].name}}"> {{ skill.values[0].name }}  +{{ skill.values[0].state.value}} </label>
 										</div>
 										<div class="medium-6 columns">
-											<label><input type="radio" ng-model="selectedItem" value="{{skill.values[1].name}}"> {{ skill.values[1].name }}</label>
+											<label><input type="radio" ng-model="selectedItem" value="{{skill.values[1].name}}"> {{ skill.values[1].name }}  +{{ skill.values[1].state.value}} </label>
 										</div>
 									</div>
 									<div ng-if="skill.values.length == 3">
                                         <div class="medium-4 columns">
-                                            <label><input type="radio" ng-model="selectedItem" value="{{skill.values[0].name}}"> {{ skill.values[0].name }}</label>
+                                            <label><input type="radio" ng-model="selectedItem" value="{{skill.values[0].name}}"> {{ skill.values[0].name }}  +{{ skill.values[0].state.value}} </label>
                                         </div>
                                         <div class="medium-4 columns">
-                                            <label><input type="radio" ng-model="selectedItem" value="{{skill.values[1].name}}"> {{ skill.values[1].name }}</label>
+                                            <label><input type="radio" ng-model="selectedItem" value="{{skill.values[1].name}}"> {{ skill.values[1].name }}  +{{ skill.values[1].state.value}} </label>
                                         </div>
                                         <div class="medium-4 columns">
-                                            <label><input type="radio" ng-model="selectedItem" value="{{skill.values[2].name}}"> {{ skill.values[2].name }}</label>
+                                            <label><input type="radio" ng-model="selectedItem" value="{{skill.values[2].name}}"> {{ skill.values[2].name }}  +{{ skill.values[2].state.value}} </label>
                                         </div>
                                     </div>
 								</div>

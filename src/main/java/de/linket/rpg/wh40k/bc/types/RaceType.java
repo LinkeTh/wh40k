@@ -14,6 +14,7 @@ import de.linket.rpg.wh40k.bc.definition.races.talents.SpaceMarineTalentWrapper;
 import de.linket.rpg.wh40k.bc.definition.races.traits.HumanTraitWrapper;
 import de.linket.rpg.wh40k.bc.definition.races.traits.SpaceMarineTraitWrapper;
 import de.linket.rpg.wh40k.bc.exp.Experience;
+import de.linket.rpg.wh40k.bc.player.skills.Skill;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum RaceType implements GameObject
@@ -23,11 +24,11 @@ public enum RaceType implements GameObject
 
     private int characteristicBonus;
     private Experience startExperience;
-    private SelectionWrapper<SkillType> skillWrapper;
+    private SelectionWrapper<Skill> skillWrapper;
     private SelectionWrapper<TalentType> talentWrapper;
     private SelectionWrapper<TraitType> traitWrapper;
 
-    private RaceType(int characteristicBonus, Experience startExperience, SelectionWrapper<SkillType> skillWrapper,
+    private RaceType(int characteristicBonus, Experience startExperience, SelectionWrapper<Skill> skillWrapper,
                     SelectionWrapper<TalentType> talentWrapper, SelectionWrapper<TraitType> traitWrapper)
     {
         this.characteristicBonus = characteristicBonus;
@@ -53,7 +54,7 @@ public enum RaceType implements GameObject
     }
 
     @JsonIgnore
-    public SelectionWrapper<SkillType> getSkillWrapper()
+    public SelectionWrapper<Skill> getSkillWrapper()
     {
         return this.skillWrapper;
     }

@@ -7,24 +7,29 @@ import de.linket.rpg.wh40k.bc.common.selection.DecisionComposer;
 import de.linket.rpg.wh40k.bc.common.selection.SelectionContainer;
 import de.linket.rpg.wh40k.bc.common.selection.SelectionWrapper;
 import de.linket.rpg.wh40k.bc.common.selection.SingleComposer;
+import de.linket.rpg.wh40k.bc.player.skills.Skill;
+import de.linket.rpg.wh40k.bc.types.SkillStateType;
 import de.linket.rpg.wh40k.bc.types.SkillType;
 
-public class HeretekSkillWrapper implements SelectionWrapper<SkillType>
+public class HeretekSkillWrapper implements SelectionWrapper<Skill>
 {
     @Override
-    public List<SelectionContainer<SkillType>> getSelectionContainer()
+    public List<SelectionContainer<Skill>> getSelectionContainer()
     {
-        List<SelectionContainer<SkillType>> result = new ArrayList<>();
+        List<SelectionContainer<Skill>> result = new ArrayList<>();
 
-        SelectionContainer<SkillType> c1 = new SingleComposer<SkillType>(SkillType.LOGIC);
-        SelectionContainer<SkillType> c2 = new SingleComposer<SkillType>(SkillType.COMMON_LORE_ADEPTUS_MECHANICUS);
-        SelectionContainer<SkillType> c3 = new SingleComposer<SkillType>(SkillType.COMMON_LORE_TECH);
-        SelectionContainer<SkillType> c4 = new SingleComposer<SkillType>(SkillType.TECH_USE);
-        SelectionContainer<SkillType> c5 = new DecisionComposer<SkillType>(SkillType.DODGE, SkillType.PARRY);
-        SelectionContainer<SkillType> c6 = new DecisionComposer<SkillType>(SkillType.SECURITY, SkillType.TECH_USE /* +10 */);
-        SelectionContainer<SkillType> c7 = new DecisionComposer<SkillType>(SkillType.SCHOLASTIC_LORE_ASTROMANCY, SkillType.SCHOLASTIC_LORE_CHYMISTRY);
-        SelectionContainer<SkillType> c8 = new DecisionComposer<SkillType>(SkillType.FORBIDDEN_LORE_ARCHEOTECH, SkillType.FORBIDDEN_LORE_XENOS,
-                        SkillType.FORBIDDEN_LORE_WARP);
+        SelectionContainer<Skill> c1 = new SingleComposer<Skill>(new Skill(SkillType.LOGIC));
+        SelectionContainer<Skill> c2 = new SingleComposer<Skill>(new Skill(SkillType.COMMON_LORE_ADEPTUS_MECHANICUS));
+        SelectionContainer<Skill> c3 = new SingleComposer<Skill>(new Skill(SkillType.COMMON_LORE_TECH));
+        SelectionContainer<Skill> c4 = new SingleComposer<Skill>(new Skill(SkillType.TECH_USE));
+        SelectionContainer<Skill> c5 = new DecisionComposer<Skill>(new Skill(SkillType.DODGE), new Skill(SkillType.PARRY));
+        SelectionContainer<Skill> c6 =
+                        new DecisionComposer<Skill>(new Skill(SkillType.SECURITY), new Skill(SkillType.TECH_USE, SkillStateType.TRAINED) /* +10 */);
+        SelectionContainer<Skill> c7 =
+                        new DecisionComposer<Skill>(new Skill(SkillType.SCHOLASTIC_LORE_ASTROMANCY), new Skill(SkillType.SCHOLASTIC_LORE_CHYMISTRY));
+        SelectionContainer<Skill> c8 =
+                        new DecisionComposer<Skill>(new Skill(SkillType.FORBIDDEN_LORE_ARCHEOTECH), new Skill(SkillType.FORBIDDEN_LORE_XENOS),
+                                        new Skill(SkillType.FORBIDDEN_LORE_WARP));
 
         result.add(c1);
         result.add(c2);

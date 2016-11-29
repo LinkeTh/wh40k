@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import de.linket.rpg.wh40k.bc.common.selection.SelectionWrapper;
+import de.linket.rpg.wh40k.bc.player.skills.Skill;
 import de.linket.rpg.wh40k.bc.types.ClassType;
 import de.linket.rpg.wh40k.bc.types.RaceType;
 import de.linket.rpg.wh40k.bc.types.SkillType;
@@ -14,12 +15,12 @@ import de.linket.rpg.wh40k.bc.types.SkillType;
 @Service
 public class SkillService
 {
-    public SelectionWrapper<SkillType> findByClass(ClassType classType)
+    public SelectionWrapper<Skill> findByClass(ClassType classType)
     {
         return classType.getSkillWrapper();
     }
 
-    public SelectionWrapper<SkillType> findByRace(RaceType raceType)
+    public SelectionWrapper<Skill> findByRace(RaceType raceType)
     {
         return raceType.getSkillWrapper();
     }

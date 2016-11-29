@@ -34,6 +34,7 @@ import de.linket.rpg.wh40k.bc.definition.classes.traits.HeretekTraitWrapper;
 import de.linket.rpg.wh40k.bc.definition.classes.traits.PsykerTraitWrapper;
 import de.linket.rpg.wh40k.bc.definition.classes.traits.RenegadeTraitWrapper;
 import de.linket.rpg.wh40k.bc.definition.classes.traits.SorcererTraitWrapper;
+import de.linket.rpg.wh40k.bc.player.skills.Skill;
 import de.linket.rpg.wh40k.bc.player.special.PsyRating;
 import de.linket.rpg.wh40k.bc.player.special.Wounds;
 
@@ -59,13 +60,13 @@ public enum ClassType implements GameObject
 
     private PsyRating psyRating;
     private RaceType restriction;
-    private SelectionWrapper<SkillType> skillWrapper;
+    private SelectionWrapper<Skill> skillWrapper;
     private SelectionWrapper<TalentType> talentWrapper;
     private SelectionWrapper<TraitType> traitWrapper;
 
     private Wounds wound;
 
-    private ClassType(RaceType restriction, PsyRating psyRating, SelectionWrapper<SkillType> skillWrapper, SelectionWrapper<TalentType> talentWrapper,
+    private ClassType(RaceType restriction, PsyRating psyRating, SelectionWrapper<Skill> skillWrapper, SelectionWrapper<TalentType> talentWrapper,
                     SelectionWrapper<TraitType> traitWrapper, Wounds wound)
     {
         this.restriction = restriction;
@@ -98,7 +99,7 @@ public enum ClassType implements GameObject
     }
 
     @JsonIgnore
-    public SelectionWrapper<SkillType> getSkillWrapper()
+    public SelectionWrapper<Skill> getSkillWrapper()
     {
         return this.skillWrapper;
     }

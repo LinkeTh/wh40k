@@ -7,19 +7,20 @@ import de.linket.rpg.wh40k.bc.common.selection.DecisionComposer;
 import de.linket.rpg.wh40k.bc.common.selection.SelectionContainer;
 import de.linket.rpg.wh40k.bc.common.selection.SelectionWrapper;
 import de.linket.rpg.wh40k.bc.common.selection.SingleComposer;
+import de.linket.rpg.wh40k.bc.player.skills.Skill;
 import de.linket.rpg.wh40k.bc.types.SkillType;
 
-public class ChampionSkillWrapper implements SelectionWrapper<SkillType>
+public class ChampionSkillWrapper implements SelectionWrapper<Skill>
 {
     @Override
-    public List<SelectionContainer<SkillType>> getSelectionContainer()
+    public List<SelectionContainer<Skill>> getSelectionContainer()
     {
-        List<SelectionContainer<SkillType>> result = new ArrayList<>();
+        List<SelectionContainer<Skill>> result = new ArrayList<>();
 
-        SelectionContainer<SkillType> c1 = new SingleComposer<SkillType>(SkillType.COMMAND);
-        SelectionContainer<SkillType> c2 = new SingleComposer<SkillType>(SkillType.SCHOLASTIC_LORE);
-        SelectionContainer<SkillType> c3 = new DecisionComposer<SkillType>(SkillType.CHARM, SkillType.DECEIVE);
-        SelectionContainer<SkillType> c4 = new DecisionComposer<SkillType>(SkillType.INTIMIDATE, SkillType.SCRUTINY);
+        SelectionContainer<Skill> c1 = new SingleComposer<Skill>(new Skill(SkillType.COMMAND));
+        SelectionContainer<Skill> c2 = new SingleComposer<Skill>(new Skill(SkillType.SCHOLASTIC_LORE));
+        SelectionContainer<Skill> c3 = new DecisionComposer<Skill>(new Skill(SkillType.CHARM), new Skill(SkillType.DECEIVE));
+        SelectionContainer<Skill> c4 = new DecisionComposer<Skill>(new Skill(SkillType.INTIMIDATE), new Skill(SkillType.SCRUTINY));
 
         result.add(c1);
         result.add(c2);

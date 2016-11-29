@@ -4,6 +4,7 @@ import de.linket.rpg.wh40k.bc.common.ModifiableGameValue;
 import de.linket.rpg.wh40k.bc.exp.Experience;
 import de.linket.rpg.wh40k.bc.player.advances.AdvanceList;
 import de.linket.rpg.wh40k.bc.player.advances.Advanceable;
+import de.linket.rpg.wh40k.bc.types.CharacteristicType;
 import de.linket.rpg.wh40k.bc.types.SkillStateType;
 import de.linket.rpg.wh40k.bc.types.SkillType;
 import de.linket.rpg.wh40k.bc.util.StringUtil;
@@ -14,6 +15,21 @@ public class Skill extends ModifiableGameValue<SkillType> implements Advanceable
 
     private AdvanceList<SkillAdvance> advances = new AdvanceList<>(ADVANCE_LIMIT);
 
+    private SkillStateType state;
+
+    // private static Skill instance = null;
+    //
+    // public static Skill getInstance(SkillType type, SkillStateType state)
+    // {
+    // instance = new Skill(type, state);
+    // return instance;
+    // }
+
+    public SkillStateType getState()
+    {
+        return this.state;
+    }
+
     public Skill(SkillType type)
     {
         this(type, SkillStateType.KNOWN);
@@ -22,6 +38,7 @@ public class Skill extends ModifiableGameValue<SkillType> implements Advanceable
     public Skill(SkillType type, SkillStateType state)
     {
         super(type, state.getValue());
+        this.state = state;
     }
 
     @Override
@@ -53,5 +70,20 @@ public class Skill extends ModifiableGameValue<SkillType> implements Advanceable
         builder.append(this.getValue());
         builder.append(") ");
         return builder.toString();
+    }
+
+    public CharacteristicType[] getCharacteristics()
+    {
+        return this.type.getCharacteristics();
+    }
+
+    public String getName()
+    {
+        return this.type.getName();
+    }
+
+    public boolean isSpecialisable()
+    {
+        return this.type.isSpecialisable();
     }
 }
