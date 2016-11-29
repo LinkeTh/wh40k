@@ -27,23 +27,35 @@ import de.linket.rpg.wh40k.bc.definition.classes.talents.HeretekTalentWrapper;
 import de.linket.rpg.wh40k.bc.definition.classes.talents.PsykerTalentWrapper;
 import de.linket.rpg.wh40k.bc.definition.classes.talents.RenegadeTalentWrapper;
 import de.linket.rpg.wh40k.bc.definition.classes.talents.SorcererTalentWrapper;
+import de.linket.rpg.wh40k.bc.definition.classes.traits.ApostateTraitWrapper;
+import de.linket.rpg.wh40k.bc.definition.classes.traits.ChampionTraitWrapper;
+import de.linket.rpg.wh40k.bc.definition.classes.traits.ChosenTraitWrapper;
+import de.linket.rpg.wh40k.bc.definition.classes.traits.HeretekTraitWrapper;
+import de.linket.rpg.wh40k.bc.definition.classes.traits.PsykerTraitWrapper;
+import de.linket.rpg.wh40k.bc.definition.classes.traits.RenegadeTraitWrapper;
+import de.linket.rpg.wh40k.bc.definition.classes.traits.SorcererTraitWrapper;
 import de.linket.rpg.wh40k.bc.player.special.PsyRating;
 import de.linket.rpg.wh40k.bc.player.special.Wounds;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum ClassType implements GameObject
 {
-    APOSTATE(RaceType.HUMAN, new PsyRating(0), new ApostateSkillWrapper(), new ApostateTalentWrapper(), null, new Wounds(DiceType.W5, 1, 9)),
-    CHAMPION(RaceType.CHAOS_SPACE_MARINE, new PsyRating(0), new ChampionSkillWrapper(), new ChampionTalentWrapper(), null, new Wounds(DiceType.W5, 1,
-                    15)),
-    CHOSEN(RaceType.CHAOS_SPACE_MARINE, new PsyRating(0), new ChosenSkillWrapper(), new ChosenTalentWrapper(), null, new Wounds(DiceType.W5, 1, 16)),
+    APOSTATE(RaceType.HUMAN, new PsyRating(0), new ApostateSkillWrapper(), new ApostateTalentWrapper(), new ApostateTraitWrapper(), new Wounds(
+                    DiceType.W5, 1, 9)),
+    CHAMPION(RaceType.CHAOS_SPACE_MARINE, new PsyRating(
+                    0), new ChampionSkillWrapper(), new ChampionTalentWrapper(), new ChampionTraitWrapper(), new Wounds(DiceType.W5, 1, 15)),
+    CHOSEN(RaceType.CHAOS_SPACE_MARINE, new PsyRating(0), new ChosenSkillWrapper(), new ChosenTalentWrapper(), new ChosenTraitWrapper(), new Wounds(
+                    DiceType.W5, 1, 16)),
     FORSAKEN(RaceType.CHAOS_SPACE_MARINE, new PsyRating(0), new ForsakenSkillWrapper(), new ForsakenTalentWrapper(), null, new Wounds(DiceType.W5, 1,
                     15)),
-    HERETEK(RaceType.HUMAN, new PsyRating(0), new HeretekSkillWrapper(), new HeretekTalentWrapper(), null, new Wounds(DiceType.W5, 1, 12)),
-    PSYKER(RaceType.HUMAN, new PsyRating(3), new PsykerSkillWrapper(), new PsykerTalentWrapper(), null, new Wounds(DiceType.W5, 1, 8)),
-    RENEGADE(RaceType.HUMAN, new PsyRating(0), new RenegadeSkillWrapper(), new RenegadeTalentWrapper(), null, new Wounds(DiceType.W5, 1, 10)),
-    SORCERER(RaceType.CHAOS_SPACE_MARINE, new PsyRating(2), new SorcererSkillWrapper(), new SorcererTalentWrapper(), null, new Wounds(DiceType.W5, 1,
-                    15));
+    HERETEK(RaceType.HUMAN, new PsyRating(0), new HeretekSkillWrapper(), new HeretekTalentWrapper(), new HeretekTraitWrapper(), new Wounds(
+                    DiceType.W5, 1, 12)),
+    PSYKER(RaceType.HUMAN, new PsyRating(3), new PsykerSkillWrapper(), new PsykerTalentWrapper(), new PsykerTraitWrapper(), new Wounds(DiceType.W5, 1,
+                    8)),
+    RENEGADE(RaceType.HUMAN, new PsyRating(0), new RenegadeSkillWrapper(), new RenegadeTalentWrapper(), new RenegadeTraitWrapper(), new Wounds(
+                    DiceType.W5, 1, 10)),
+    SORCERER(RaceType.CHAOS_SPACE_MARINE, new PsyRating(
+                    2), new SorcererSkillWrapper(), new SorcererTalentWrapper(), new SorcererTraitWrapper(), new Wounds(DiceType.W5, 1, 15));
 
     private PsyRating psyRating;
     private RaceType restriction;

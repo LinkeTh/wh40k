@@ -8,7 +8,7 @@ import de.linket.rpg.wh40k.bc.common.selection.SelectionWrapper;
 import de.linket.rpg.wh40k.bc.common.selection.SingleComposer;
 import de.linket.rpg.wh40k.bc.types.TraitType;
 
-public class SocererTraitWrapper implements SelectionWrapper<TraitType>
+public class SorcererTraitWrapper implements SelectionWrapper<TraitType>
 {
     @Override
     public List<SelectionContainer<TraitType>> getSelectionContainer()
