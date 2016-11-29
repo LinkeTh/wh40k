@@ -16,15 +16,24 @@ public class HeretekSkillWrapper implements SelectionWrapper<SkillType>
     {
         List<SelectionContainer<SkillType>> result = new ArrayList<>();
 
-        SelectionContainer<SkillType> c1 = new SingleComposer<SkillType>(SkillType.COMMAND);
-        SelectionContainer<SkillType> c2 = new SingleComposer<SkillType>(SkillType.SCHOLASTIC_LORE);
-        SelectionContainer<SkillType> c3 = new DecisionComposer<SkillType>(SkillType.CHARM, SkillType.DECEIVE);
-        SelectionContainer<SkillType> c4 = new DecisionComposer<SkillType>(SkillType.INTIMIDATE, SkillType.SCRUTINY);
+        SelectionContainer<SkillType> c1 = new SingleComposer<SkillType>(SkillType.LOGIC);
+        SelectionContainer<SkillType> c2 = new SingleComposer<SkillType>(SkillType.COMMON_LORE_ADEPTUS_MECHANICUS);
+        SelectionContainer<SkillType> c3 = new SingleComposer<SkillType>(SkillType.COMMON_LORE_TECH);
+        SelectionContainer<SkillType> c4 = new SingleComposer<SkillType>(SkillType.TECH_USE);
+        SelectionContainer<SkillType> c5 = new DecisionComposer<SkillType>(SkillType.DODGE, SkillType.PARRY);
+        SelectionContainer<SkillType> c6 = new DecisionComposer<SkillType>(SkillType.SECURITY, SkillType.TECH_USE /* +10 */);
+        SelectionContainer<SkillType> c7 = new DecisionComposer<SkillType>(SkillType.SCHOLASTIC_LORE_ASTROMANCY, SkillType.SCHOLASTIC_LORE_CHYMISTRY);
+        SelectionContainer<SkillType> c8 = new DecisionComposer<SkillType>(SkillType.FORBIDDEN_LORE_ARCHEOTECH, SkillType.FORBIDDEN_LORE_XENOS,
+                        SkillType.FORBIDDEN_LORE_WARP);
 
         result.add(c1);
         result.add(c2);
         result.add(c3);
         result.add(c4);
+        result.add(c5);
+        result.add(c6);
+        result.add(c7);
+        result.add(c8);
 
         return result;
     }

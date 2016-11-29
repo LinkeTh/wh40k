@@ -85,8 +85,6 @@ public class PlayerCharacterGenerator
         MotivationType motivation =
                         (MotivationType) this.handleSingleOption(Arrays.asList(MotivationType.values()), "Please select your motiviation: ");
         this.pc.setMotivation(motivation);
-
-        this.pc.advanceTalent(TalentType.BLA);
     }
 
     private Wounds generateWounds()

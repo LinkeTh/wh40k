@@ -16,10 +16,10 @@ public class ForsakenSkillWrapper implements SelectionWrapper<SkillType>
     {
         List<SelectionContainer<SkillType>> result = new ArrayList<>();
 
-        SelectionContainer<SkillType> c1 = new SingleComposer<SkillType>(SkillType.COMMAND);
-        SelectionContainer<SkillType> c2 = new SingleComposer<SkillType>(SkillType.SCHOLASTIC_LORE);
-        SelectionContainer<SkillType> c3 = new DecisionComposer<SkillType>(SkillType.CHARM, SkillType.DECEIVE);
-        SelectionContainer<SkillType> c4 = new DecisionComposer<SkillType>(SkillType.INTIMIDATE, SkillType.SCRUTINY);
+        SelectionContainer<SkillType> c1 = new SingleComposer<SkillType>(SkillType.ACROBATICS);
+        SelectionContainer<SkillType> c2 = new SingleComposer<SkillType>(SkillType.SURVIVAL);
+        SelectionContainer<SkillType> c3 = new DecisionComposer<SkillType>(SkillType.COMMERCE, SkillType.SECURITY);
+        SelectionContainer<SkillType> c4 = new DecisionComposer<SkillType>(SkillType.COMMON_LORE, SkillType.SURVIVAL /* +10 */);
 
         result.add(c1);
         result.add(c2);

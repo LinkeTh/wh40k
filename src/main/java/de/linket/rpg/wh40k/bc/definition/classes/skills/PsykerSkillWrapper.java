@@ -16,15 +16,17 @@ public class PsykerSkillWrapper implements SelectionWrapper<SkillType>
     {
         List<SelectionContainer<SkillType>> result = new ArrayList<>();
 
-        SelectionContainer<SkillType> c1 = new SingleComposer<SkillType>(SkillType.COMMAND);
-        SelectionContainer<SkillType> c2 = new SingleComposer<SkillType>(SkillType.SCHOLASTIC_LORE);
-        SelectionContainer<SkillType> c3 = new DecisionComposer<SkillType>(SkillType.CHARM, SkillType.DECEIVE);
-        SelectionContainer<SkillType> c4 = new DecisionComposer<SkillType>(SkillType.INTIMIDATE, SkillType.SCRUTINY);
+        SelectionContainer<SkillType> c1 = new SingleComposer<SkillType>(SkillType.AWARENESS);
+        SelectionContainer<SkillType> c2 = new SingleComposer<SkillType>(SkillType.PSYNISCIENCE);
+        SelectionContainer<SkillType> c3 = new SingleComposer<SkillType>(SkillType.FORBIDDEN_LORE_PSYKERS);
+        SelectionContainer<SkillType> c4 = new DecisionComposer<SkillType>(SkillType.DECEIVE, SkillType.INTIMIDATE);
+        SelectionContainer<SkillType> c5 = new DecisionComposer<SkillType>(SkillType.DODGE, SkillType.PARRY);
 
         result.add(c1);
         result.add(c2);
         result.add(c3);
         result.add(c4);
+        result.add(c5);
 
         return result;
     }

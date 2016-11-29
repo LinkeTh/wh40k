@@ -15,7 +15,7 @@ public class HumanTraitWrapper implements SelectionWrapper<TraitType>
     {
         List<SelectionContainer<TraitType>> result = new ArrayList<>();
 
-        SelectionContainer<TraitType> c1 = new SingleComposer<TraitType>(TraitType.FAT);
+        SelectionContainer<TraitType> c1 = new SingleComposer<TraitType>(TraitType.THE_QUICK_AND_THE_DEAD);
         result.add(c1);
 
         return result;

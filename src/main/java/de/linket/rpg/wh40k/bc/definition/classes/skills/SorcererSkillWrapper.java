@@ -16,10 +16,10 @@ public class SorcererSkillWrapper implements SelectionWrapper<SkillType>
     {
         List<SelectionContainer<SkillType>> result = new ArrayList<>();
 
-        SelectionContainer<SkillType> c1 = new SingleComposer<SkillType>(SkillType.COMMAND);
-        SelectionContainer<SkillType> c2 = new SingleComposer<SkillType>(SkillType.SCHOLASTIC_LORE);
-        SelectionContainer<SkillType> c3 = new DecisionComposer<SkillType>(SkillType.CHARM, SkillType.DECEIVE);
-        SelectionContainer<SkillType> c4 = new DecisionComposer<SkillType>(SkillType.INTIMIDATE, SkillType.SCRUTINY);
+        SelectionContainer<SkillType> c1 = new SingleComposer<SkillType>(SkillType.PSYNISCIENCE);
+        SelectionContainer<SkillType> c2 = new SingleComposer<SkillType>(SkillType.SCHOLASTIC_LORE_OCCULT);
+        SelectionContainer<SkillType> c3 = new DecisionComposer<SkillType>(SkillType.DECEIVE, SkillType.SCRUTINY);
+        SelectionContainer<SkillType> c4 = new DecisionComposer<SkillType>(SkillType.FORBIDDEN_LORE_DAEMONOLOGY, SkillType.FORBIDDEN_LORE_PSYKERS);
 
         result.add(c1);
         result.add(c2);

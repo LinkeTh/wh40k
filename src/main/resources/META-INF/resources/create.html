@@ -140,12 +140,25 @@
 									</div>
 								</div>
 								<div ng-if="skill.type == 'DECISION'" ng-init="selectedItem = skill.values[0].name">
-									<div class="medium-6 columns">
-										<label><input type="radio" ng-model="selectedItem" value="{{skill.values[0].name}}"> {{ skill.values[0].name }}</label>
+								    <div ng-if="skill.values.length == 2">
+										<div class="medium-6 columns">
+											<label><input type="radio" ng-model="selectedItem" value="{{skill.values[0].name}}"> {{ skill.values[0].name }}</label>
+										</div>
+										<div class="medium-6 columns">
+											<label><input type="radio" ng-model="selectedItem" value="{{skill.values[1].name}}"> {{ skill.values[1].name }}</label>
+										</div>
 									</div>
-									<div class="medium-6 columns">
-										<label><input type="radio" ng-model="selectedItem" value="{{skill.values[1].name}}"> {{ skill.values[1].name }}</label>
-									</div>
+									<div ng-if="skill.values.length == 3">
+                                        <div class="medium-4 columns">
+                                            <label><input type="radio" ng-model="selectedItem" value="{{skill.values[0].name}}"> {{ skill.values[0].name }}</label>
+                                        </div>
+                                        <div class="medium-4 columns">
+                                            <label><input type="radio" ng-model="selectedItem" value="{{skill.values[1].name}}"> {{ skill.values[1].name }}</label>
+                                        </div>
+                                        <div class="medium-4 columns">
+                                            <label><input type="radio" ng-model="selectedItem" value="{{skill.values[2].name}}"> {{ skill.values[2].name }}</label>
+                                        </div>
+                                    </div>
 								</div>
 								<hr class="separator">
 							</div>

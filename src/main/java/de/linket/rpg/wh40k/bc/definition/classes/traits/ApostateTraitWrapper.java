@@ -15,8 +15,11 @@ public class ApostateTraitWrapper implements SelectionWrapper<TraitType>
     {
         List<SelectionContainer<TraitType>> result = new ArrayList<>();
 
-        SelectionContainer<TraitType> c1 = new SingleComposer<TraitType>(TraitType.FAT);
+        SelectionContainer<TraitType> c1 = new SingleComposer<TraitType>(TraitType.SERPENTS_TONGUE);
+        SelectionContainer<TraitType> c2 = new SingleComposer<TraitType>(TraitType.APOSTATE_CLASS);
+
         result.add(c1);
+        result.add(c2);
 
         return result;
     }

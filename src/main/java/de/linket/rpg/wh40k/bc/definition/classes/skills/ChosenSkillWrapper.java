@@ -16,15 +16,13 @@ public class ChosenSkillWrapper implements SelectionWrapper<SkillType>
     {
         List<SelectionContainer<SkillType>> result = new ArrayList<>();
 
-        SelectionContainer<SkillType> c1 = new SingleComposer<SkillType>(SkillType.COMMAND);
-        SelectionContainer<SkillType> c2 = new SingleComposer<SkillType>(SkillType.SCHOLASTIC_LORE);
-        SelectionContainer<SkillType> c3 = new DecisionComposer<SkillType>(SkillType.CHARM, SkillType.DECEIVE);
-        SelectionContainer<SkillType> c4 = new DecisionComposer<SkillType>(SkillType.INTIMIDATE, SkillType.SCRUTINY);
+        SelectionContainer<SkillType> c1 = new SingleComposer<SkillType>(SkillType.INTIMIDATE);
+        SelectionContainer<SkillType> c2 = new SingleComposer<SkillType>(SkillType.STEALTH);
+        SelectionContainer<SkillType> c3 = new DecisionComposer<SkillType>(SkillType.DODGE, SkillType.PARRY); // +10 TODO
 
         result.add(c1);
         result.add(c2);
         result.add(c3);
-        result.add(c4);
 
         return result;
     }

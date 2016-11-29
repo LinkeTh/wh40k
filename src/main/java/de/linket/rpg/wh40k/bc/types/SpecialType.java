@@ -6,5 +6,8 @@ public enum SpecialType implements GameObject
 {
     WOUNDS,
     PSYRATING,
+    CORRUPTION,
+    PSYKER_BOUND,
+    PSYKER_UNBOUND,
     INITIATIVE;
 }
