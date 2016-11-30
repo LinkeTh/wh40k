@@ -39,6 +39,11 @@ public class Skill extends ModifiableGameValue<SkillType> implements Advanceable
     {
         super(type, state.getValue());
         this.state = state;
+
+        for (int i = 0; i < state.getAdvance(); i++)
+        {
+            this.advances.addAdvance(new SkillAdvance(null));
+        }
     }
 
     @Override
