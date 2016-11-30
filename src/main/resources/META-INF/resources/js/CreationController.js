@@ -46,13 +46,17 @@ function CreationController($scope, $window, $rootScope, $location, CreationServ
 
 			console.log(CreationService.character);
 			CreationService.talents = [];
-			CreationService.skills = [];
 			CreationService.wounds = {};
 			$scope.acceptedWounds = false;
-			CreationService.getSkillsForClass($class);
-			CreationService.getTalentsForClass($class);
-			CreationService.getSkillsForRace(CreationService.character.race);
-			CreationService.getTalentsForRace(CreationService.character.race);
+			
+			
+			CreationService.getTalentsForCreation(CreationService.character.race, $class);
+			CreationService.getSkillsForCreation(CreationService.character.race, $class);
+            						
+//			CreationService.getSkillsForClass($class);
+//			CreationService.getTalentsForClass($class);
+//			CreationService.getSkillsForRace(CreationService.character.race);
+//			CreationService.getTalentsForRace(CreationService.character.race);
 		}
 	};
 

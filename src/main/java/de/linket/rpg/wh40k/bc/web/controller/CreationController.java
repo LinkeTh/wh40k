@@ -1,6 +1,8 @@
 package de.linket.rpg.wh40k.bc.web.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wordnik.swagger.annotations.Api;
 
+import de.linket.rpg.wh40k.bc.common.selection.SelectionContainer;
 import de.linket.rpg.wh40k.bc.common.selection.SelectionWrapper;
 import de.linket.rpg.wh40k.bc.player.Character;
 import de.linket.rpg.wh40k.bc.player.characteristics.Characteristic;
@@ -258,6 +261,79 @@ public class CreationController
         Assert.notNull(raceType);
 
         return this.traitService.findByRace(raceType);
+    }
+
+    @RequestMapping(value = "character/{classType}/{raceType}/talents", method = RequestMethod.GET)
+    public List<SelectionContainer<TalentType>> getTalentsForCreation(@PathVariable("classType") ClassType classType,
+                    @PathVariable("raceType") RaceType raceType)
+    {
+        log.debug("Getting talents for race " + raceType + " and class " + classType);
+
+        Assert.notNull(classType);
+        Assert.notNull(raceType);
+
+        List<SelectionContainer<TalentType>> result = new ArrayList<>();
+
+        SelectionWrapper<TalentType> raceTalents = this.talentService.findByRace(raceType);
+
+        SelectionWrapper<TalentType> classTalents = this.talentService.findByClass(classType);
+
+        if (raceTalents != null)
+        {
+            result.addAll(raceTalents.getSelectionContainer());
+        }
+
+        if (classTalents != null)
+        {
+            result.addAll(classTalents.getSelectionContainer());
+        }
+
+        return result;
+    }
+
+    @RequestMapping(value = "character/{classType}/{raceType}/skills", method = RequestMethod.GET)
+    public List<SelectionContainer<Skill>> getSkillsForCreation(@PathVariable("classType") ClassType classType,
+                    @PathVariable("raceType") RaceType raceType)
+    {
+        log.debug("Getting skills for race " + raceType + " and class " + classType);
+
+        Assert.notNull(classType);
+        Assert.notNull(raceType);
+
+        List<SelectionContainer<Skill>> result = new ArrayList<>();
+
+        SelectionWrapper<Skill> raceSkills = this.skillService.findByRace(raceType);
+
+        SelectionWrapper<Skill> classSkills = this.skillService.findByClass(classType);
+
+        if (raceSkills != null)
+        {
+            result.addAll(raceSkills.getSelectionContainer());
+        }
+
+        if (classSkills != null)
+        {
+            result.addAll(classSkills.getSelectionContainer());
+        }
+
+        // Collections.sort(result, new Comparator<SelectionContainer<Skill>>()
+        // {
+        // @Override
+        // public int compare(SelectionContainer<Skill> s1, SelectionContainer<Skill> s2)
+        // {
+        // if ((s1.getValues() != null) && (s2.getValues() != null))
+        // {
+        // return s1.getValues().get(0).getName().compareTo(s2.getValues().get(0).getName());
+        // }
+        // return 0;
+        // }
+        // });
+
+        Collections.sort(result,
+                        (SelectionContainer<Skill> r1, SelectionContainer<Skill> r2) -> r1.getValues().get(0).getName()
+                                        .compareTo(r2.getValues().get(0).getName()));
+
+        return result;
     }
 
 }

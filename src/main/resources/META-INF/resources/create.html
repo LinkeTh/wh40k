@@ -11,9 +11,7 @@
 <title>Warhammer 40K Black Crusade Creation</title>
 <link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css' />
 
-<link href='css/ext/reset.css' media='screen' rel='stylesheet' type='text/css' />
 <link href='css/ext/screen.css' media='screen' rel='stylesheet' type='text/css' />
-<link href='css/ext/reset.css' media='print' rel='stylesheet' type='text/css' />
 <link href='css/ext/screen.css' media='print' rel='stylesheet' type='text/css' />
 <link href='css/ext/foundation.css' media='print' rel='stylesheet' type='text/css' />
 <link href='css/ext/foundation.css' media='screen' rel='stylesheet' type='text/css' />
@@ -120,12 +118,12 @@
 						<hr class="separator">
 
 						<div class="subHeader">SKILLS</div>
-						<div ng-repeat="container in creation().skills">
-							<div ng-repeat="skill in container.selectionContainer" class="medium-12 table-list">
+						 <!-- <div ng-repeat="container in creation().skills">  -->
+							<div ng-repeat="skill in creation().skills" class="medium-12 table-list">
 								<div ng-if="skill.type == 'SINGLE'">
 									<div ng-if="skill.values[0].specialisable">
 										<div ng-repeat="subskill in masterData().findSubSkills(skill.values[0].name)" class="medium-6 columns">
-											<label><input type="radio" ng-model="$parent.selectedItem" value="{{ subskill.name }}"> {{ subskill.name }} </label>
+											<label><input type="radio" ng-model="$parent.selectedItem" value="{{ subskill.name }}"> {{ subskill.name }} +{{ skill.values[0].state.value}} </label>
 										</div>
 									</div>
 									<div ng-if="!skill.values[0].specialisable" class="medium-6 columns">
@@ -135,7 +133,7 @@
 								<div ng-if="skill.type == 'MULTI'">
 									<div ng-if="skill.values[0].specialisable">
 										<div ng-repeat="subskill in masterData().findSubSkills(skill.values[0].name)" class="medium-6 columns">
-											<label><input type="checkbox" ng-model="subskill.checked" ng-change="checkChanged(subskill, checkedSkills)" ng-disabled="checkedSkills==skill.values.length  && !subskill.checked"> {{ subskill.name }} </label>
+											<label><input type="checkbox" ng-model="subskill.checked" ng-change="checkChanged(subskill, checkedSkills)" ng-disabled="checkedSkills==skill.values.length  && !subskill.checked"> {{ subskill.name }} +{{ skill.values[0].state.value}}</label>
 										</div>
 									</div>
 								</div>
@@ -162,7 +160,7 @@
 								</div>
 								<hr class="separator">
 							</div>
-						</div>
+						<!-- </div> -->
 
 						<div class="subHeader">TALENTS</div>
 						<div ng-repeat="container in creation().talents">
