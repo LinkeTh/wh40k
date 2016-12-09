@@ -3,6 +3,8 @@ package de.linket.rpg.wh40k.bc.jpa.domain;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import de.linket.rpg.wh40k.bc.modifier.ModifierType;
 
@@ -15,8 +17,9 @@ public abstract class SkillModifierBE extends ModifierBE
 	@Column(name = "VALUE", nullable = false, precision = 2, scale = 0)
 	private Integer value;
 
-	@Column(name = "KEY", nullable = false)
-	private Long skillId;
+	@ManyToOne
+	@JoinColumn
+	private SkillBE skill;
 
 	public Integer getValue()
 	{
@@ -28,13 +31,13 @@ public abstract class SkillModifierBE extends ModifierBE
 		this.value = value;
 	}
 
-	public Long getSkillId()
+	public SkillBE getSkill()
 	{
-		return this.skillId;
+		return this.skill;
 	}
 
-	public void setSkillId(Long skillId)
+	public void setSkill(SkillBE skill)
 	{
-		this.skillId = skillId;
+		this.skill = skill;
 	}
 }
