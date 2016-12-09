@@ -7,21 +7,21 @@ import javax.persistence.Entity;
 import de.linket.rpg.wh40k.bc.modifier.ModifierType;
 
 @Entity
-@DiscriminatorValue(value = ModifierType.Values.SPECIAL)
+@DiscriminatorValue(value = ModifierType.Values.TEXT)
 public abstract class TextModifierBE extends ModifierBE
 {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Column(name = "DESCRIPTION", nullable = false, length = 4000)
-    private String description;
+	@Column(name = "DESCRIPTION", nullable = false, length = 4000)
+	private String description;
 
-    public String getDescription()
-    {
-        return this.description;
-    }
+	public String getDescription()
+	{
+		return this.description;
+	}
 
-    public void setDescription(String description)
-    {
-        this.description = description;
-    }
+	public void setDescription(String description)
+	{
+		this.description = description;
+	}
 }

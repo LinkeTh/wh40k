@@ -3,6 +3,8 @@ package de.linket.rpg.wh40k.bc.jpa.domain;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 import de.linket.rpg.wh40k.bc.modifier.ModifierType;
 import de.linket.rpg.wh40k.bc.types.AttributeType;
@@ -11,31 +13,32 @@ import de.linket.rpg.wh40k.bc.types.AttributeType;
 @DiscriminatorValue(value = ModifierType.Values.ATTRIBUTE_BONUS)
 public abstract class AttributeBonusModifierBE extends ModifierBE
 {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Column(name = "VALUE", nullable = false, precision = 2, scale = 0)
-    private Integer value;
+	@Column(name = "VALUE", nullable = false, precision = 2, scale = 0)
+	private Integer value;
 
-    @Column(name = "KEY", nullable = false)
-    private AttributeType attribute;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "KEY", nullable = false)
+	private AttributeType attribute;
 
-    public Integer getValue()
-    {
-        return this.value;
-    }
+	public Integer getValue()
+	{
+		return this.value;
+	}
 
-    public void setValue(Integer value)
-    {
-        this.value = value;
-    }
+	public void setValue(Integer value)
+	{
+		this.value = value;
+	}
 
-    public AttributeType getAttribute()
-    {
-        return this.attribute;
-    }
+	public AttributeType getAttribute()
+	{
+		return this.attribute;
+	}
 
-    public void setAttribute(AttributeType attribute)
-    {
-        this.attribute = attribute;
-    }
+	public void setAttribute(AttributeType attribute)
+	{
+		this.attribute = attribute;
+	}
 }

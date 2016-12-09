@@ -10,31 +10,31 @@ import de.linket.rpg.wh40k.bc.modifier.ModifierType;
 @DiscriminatorValue(value = ModifierType.Values.SKILL)
 public abstract class SkillModifierBE extends ModifierBE
 {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Column(name = "VALUE", nullable = false, precision = 2, scale = 0)
-    private Integer value;
+	@Column(name = "VALUE", nullable = false, precision = 2, scale = 0)
+	private Integer value;
 
-    @Column(name = "KEY", nullable = false)
-    private SkillBE skill;
+	@Column(name = "KEY", nullable = false)
+	private Long skillId;
 
-    public Integer getValue()
-    {
-        return this.value;
-    }
+	public Integer getValue()
+	{
+		return this.value;
+	}
 
-    public void setValue(Integer value)
-    {
-        this.value = value;
-    }
+	public void setValue(Integer value)
+	{
+		this.value = value;
+	}
 
-    public SkillBE getSkill()
-    {
-        return this.skill;
-    }
+	public Long getSkillId()
+	{
+		return this.skillId;
+	}
 
-    public void setSkill(SkillBE skill)
-    {
-        this.skill = skill;
-    }
+	public void setSkillId(Long skillId)
+	{
+		this.skillId = skillId;
+	}
 }
