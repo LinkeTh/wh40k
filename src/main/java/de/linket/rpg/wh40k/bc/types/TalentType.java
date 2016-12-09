@@ -87,14 +87,14 @@ public enum TalentType implements GameObject
     SURE_STRIKE(new TextModifier(new TextObject("")));
 
     private List<Modifier<?>> modifiers;
-    private boolean advancable;
+    private boolean advanceable;
     private TalentType parent;
     private boolean specialisable;
 
     private TalentType(boolean specialisable, TalentType parent, boolean advancable, Modifier<?>... modifiers)
     {
         this.specialisable = specialisable;
-        this.advancable = advancable;
+        this.advanceable = advancable;
         this.parent = parent;
         if (modifiers != null)
         {
@@ -105,7 +105,7 @@ public enum TalentType implements GameObject
     private TalentType(boolean specialisable, TalentType parent, boolean advancable)
     {
         this.specialisable = specialisable;
-        this.advancable = advancable;
+        this.advanceable = advancable;
         this.parent = parent;
         this.modifiers = null;
     }
@@ -137,7 +137,7 @@ public enum TalentType implements GameObject
 
     public boolean isAdvancable()
     {
-        return this.advancable;
+        return this.advanceable;
     }
 
     public List<Modifier<?>> getModifiers()
