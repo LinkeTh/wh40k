@@ -5,14 +5,10 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import de.linket.rpg.wh40k.bc.types.AttributeType;
 
 @Entity
 @Table(name = "WH_SKILL")
@@ -23,9 +19,9 @@ public class SkillBE extends AbstractPersistable
 	@Column(name = "NAME", length = 150, nullable = false)
 	private String name;
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "ATTRIBUTE", nullable = false)
-	public AttributeType attribute;
+	@ManyToOne
+	@JoinColumn
+	private AttributeBE attribute;
 
 	@Column(name = "SPECIALISABLE", nullable = false)
 	private Boolean specialisable = false;
@@ -82,14 +78,11 @@ public class SkillBE extends AbstractPersistable
 		this.subSkills = subSkills;
 	}
 
-	public AttributeType getAttribute()
-	{
+	public AttributeBE getAttribute() {
 		return this.attribute;
 	}
 
-	public void setAttribute(AttributeType attribute)
-	{
+	public void setAttribute(AttributeBE attribute) {
 		this.attribute = attribute;
 	}
-
 }

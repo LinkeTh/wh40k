@@ -9,61 +9,37 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import de.linket.rpg.wh40k.bc.jpa.domain.RaceBE;
 import de.linket.rpg.wh40k.bc.web.service.RaceService;
+import de.linket.rpg.wh40k.bc.web.service.SkillService;
 
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
-public class SetupData
-{
-    private static final Logger log = LoggerFactory.getLogger(SetupData.class);
+public class SetupData {
+	private static final Logger log = LoggerFactory.getLogger(SetupData.class);
 
-    @Autowired
-    private RaceService raceService;
+	@Autowired
+	private RaceService raceService;
 
-    @PostConstruct
-    public void insertData()
-    {
-        this.insertSkills();
-        this.insertTraits();
-        this.insertTalents();
-        this.insertRaces();
-    }
+	@Autowired
+	private SkillService skillService;
 
-    private void insertSkills()
-    {
-    }
+	@PostConstruct
+	public void insertData() {
+		this.insertSkills();
+		this.insertTraits();
+		this.insertTalents();
+		this.insertRaces();
+	}
 
-    private void insertTraits()
-    {
-    }
+	private void insertSkills() {
+	}
 
-    private void insertTalents()
-    {
-    }
+	private void insertTraits() {
+	}
 
-    private void insertRaces()
-    {
-        log.debug("Inserting races");
+	private void insertTalents() {
+	}
 
-        if (this.raceService.findByName("Jünger des Chaos") == null)
-        {
-            RaceBE human = new RaceBE();
-            human.setName("Jünger des Chaos");
-            human.setBaseAttributeValue(25);
-            human.setStartExperience(1000L);
-
-            this.raceService.saveRace(human);
-        }
-
-        if (this.raceService.findByName("Chaos Space Marine") == null)
-        {
-            RaceBE csm = new RaceBE();
-            csm.setName("Chaos Space Marine");
-            csm.setBaseAttributeValue(30);
-            csm.setStartExperience(500L);
-
-            this.raceService.saveRace(csm);
-        }
-    }
+	private void insertRaces() {
+	}
 }

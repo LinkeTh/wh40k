@@ -3,11 +3,10 @@ package de.linket.rpg.wh40k.bc.jpa.domain;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import de.linket.rpg.wh40k.bc.modifier.ModifierType;
-import de.linket.rpg.wh40k.bc.types.AttributeType;
 
 @Entity
 @DiscriminatorValue(value = ModifierType.Values.ATTRIBUTE_BONUS)
@@ -18,9 +17,9 @@ public abstract class AttributeBonusModifierBE extends ModifierBE
 	@Column(name = "VALUE", nullable = false, precision = 2, scale = 0)
 	private Integer value;
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "KEY", nullable = false)
-	private AttributeType attribute;
+	@ManyToOne
+	@JoinColumn
+	private AttributeBE attribute;
 
 	public Integer getValue()
 	{
@@ -32,13 +31,11 @@ public abstract class AttributeBonusModifierBE extends ModifierBE
 		this.value = value;
 	}
 
-	public AttributeType getAttribute()
-	{
+	public AttributeBE getAttribute() {
 		return this.attribute;
 	}
 
-	public void setAttribute(AttributeType attribute)
-	{
+	public void setAttribute(AttributeBE attribute) {
 		this.attribute = attribute;
 	}
 }

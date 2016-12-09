@@ -3,42 +3,36 @@ package de.linket.rpg.wh40k.bc.jpa.domain;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import de.linket.rpg.wh40k.bc.modifier.ModifierType;
-import de.linket.rpg.wh40k.bc.types.AttributeType;
 
 @Entity
 @DiscriminatorValue(value = ModifierType.Values.ATTRIBUTE)
-public abstract class AttributeModifierBE extends ModifierBE
-{
+public abstract class AttributeModifierBE extends ModifierBE {
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "VALUE", nullable = false, precision = 2, scale = 0)
 	private Integer value;
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "KEY", nullable = false)
-	private AttributeType attribute;
+	@ManyToOne
+	@JoinColumn
+	private AttributeBE attribute;
 
-	public Integer getValue()
-	{
+	public Integer getValue() {
 		return this.value;
 	}
 
-	public void setValue(Integer value)
-	{
+	public void setValue(Integer value) {
 		this.value = value;
 	}
 
-	public AttributeType getAttribute()
-	{
+	public AttributeBE getAttribute() {
 		return this.attribute;
 	}
 
-	public void setAttribute(AttributeType attribute)
-	{
+	public void setAttribute(AttributeBE attribute) {
 		this.attribute = attribute;
 	}
 }
